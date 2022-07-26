@@ -2,26 +2,34 @@ using UnityEngine;
 using WARDY.Abstracts.Controllers;
 
 
+
 namespace WARDY.Managers
 {
     public class ParticleManager
     {
-        EnemyController _enemyController;
-        public ParticleManager(EnemyController enemyController)
+        //EnemyController _enemyController;
+        //Transform particleTransform;
+        //public ParticleManager(EnemyController enemyController)
+        public ParticleManager()
         {
-            _enemyController = enemyController;
-            _enemyController.OnEnemyDestroyed += InstantiateEnemyDeathParticle;
+            //_enemyController = enemyController;
+            //_enemyController.OnEnemyDestroyed += InstantiateEnemyDeathParticle;
+
+            EventManager.EnemyDestroyed += InstantiateEnemyDeathParticle;
+
 
 
 
         }
-
-
-
-        public void InstantiateEnemyDeathParticle()
+        private void OnDisable()
         {
-            Debug.Log("instantiate");
-            GameObject.Instantiate(_enemyController._enemyDestroyParticle, _enemyController.transform.position, _enemyController.transform.rotation);
+            EventManager.EnemyDestroyed -= InstantiateEnemyDeathParticle;
+        }
+
+
+        public void InstantiateEnemyDeathParticle(GameObject _gameObjet)
+        {
+            GameObject.Instantiate(_gameObjet.GetComponent<EnemyController>()._enemyDestroyParticle, _gameObjet.transform.position, _gameObjet.transform.rotation);
         }
     }
 }

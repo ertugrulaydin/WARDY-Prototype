@@ -9,12 +9,13 @@ using WARDY.Controllers;
 using WARDY.Managers;
 
 
+
 namespace WARDY.Abstracts.Controllers
 {
     public class EnemyController : MonoBehaviour, IEnemyDamageable
     {
 
-        public event Action OnEnemyDestroyed;
+        //public event Action OnEnemyDestroyed;
 
 
         EnemyMovement _enemyMovement;
@@ -70,7 +71,7 @@ namespace WARDY.Abstracts.Controllers
             _enemyFire = new EnemyFire(this);
             _enemyHealth = new EnemyHealth(this);
 
-            _particleManager = new ParticleManager(this);
+            _particleManager = new ParticleManager();
         }
 
         private void FixedUpdate()
@@ -107,7 +108,20 @@ namespace WARDY.Abstracts.Controllers
             {
                 //EventManager.Broadcast(OnEnemyDestroyed);
                 //EventManager.Broadcast(GameEvent.OnEnemyDestroyed);
-                OnEnemyDestroyed?.Invoke();
+
+
+
+                //OnEnemyDestroyed?.Invoke();
+
+
+
+                //Messenger.Broadcast<Transform>("transform", gameObject.transform);
+
+                EventManager.OnEnemyDestroyed(gameObject);
+
+                //EventManager.Broadcast(EventManager.EnemyDestroyed);
+
+
                 this.gameObject.SetActive(false);
 
 
