@@ -46,6 +46,8 @@ namespace WARDY.Abstracts.Controllers
         [SerializeField] protected float fireRate = 1.24f;
         [SerializeField] protected float _health;
 
+        [SerializeField] protected float _scoreMultiplier;
+
 
 
 
@@ -59,6 +61,8 @@ namespace WARDY.Abstracts.Controllers
         public float HorizontalSpeed { get => horizontalSpeed; protected set => horizontalSpeed = value; }
 
         public float Health { get => _health; protected set => _health = value; }
+
+        public float ScoreMultiplier { get => _scoreMultiplier; protected set => _scoreMultiplier = value; }
 
 
 
@@ -103,7 +107,8 @@ namespace WARDY.Abstracts.Controllers
         {
             _health = _enemyHealth.IncreaseHealth(damage);
 
-            Debug.Log("enemy health: " + _health);
+            EventManager.OnEnemyGetHit(_scoreMultiplier);
+            //Debug.Log("enemy health: " + _health);
             if (_health <= 0)
             {
                 //EventManager.Broadcast(OnEnemyDestroyed);

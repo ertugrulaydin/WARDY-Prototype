@@ -10,9 +10,10 @@ namespace WARDY.Controllers
 
         private void Start()
         {
-            HorizontalSpeed = 0.05f;
+            HorizontalSpeed = 0.025f;
             FireRate = 0.9f;
             Health = 75f;
+            ScoreMultiplier = 1.25f;
         }
 
 
