@@ -26,6 +26,9 @@ namespace WARDY.Movements
             //_enemyBasicBulletPool = _enemyController.GetComponent<EnemyBasicBulletPool>();
             fireRate = _enemyController.FireRate;
 
+
+
+
             //_enemyBasicBulletPool = GameObject.Find("EnemyBasicBulletPool").GetComponent<EnemyBasicBulletPool>();
 
             parentObject = _enemyController.transform.gameObject;

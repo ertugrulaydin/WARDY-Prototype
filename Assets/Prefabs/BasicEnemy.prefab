@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletTransform: {fileID: 1508430146015854602}
+  _enemyDestroyParticle: {fileID: 19800000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
   fireRate: 2
   _health: 50
 --- !u!1 &1508430146015854605

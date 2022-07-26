@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,16 @@ using UnityEngine;
 
 using WARDY.Movements;
 using WARDY.Controllers;
+using WARDY.Managers;
 
 
 namespace WARDY.Abstracts.Controllers
 {
     public class EnemyController : MonoBehaviour, IEnemyDamageable
     {
+
+        public event Action OnEnemyDestroyed;
+
 
         EnemyMovement _enemyMovement;
         EnemyFire _enemyFire;
@@ -19,9 +24,15 @@ namespace WARDY.Abstracts.Controllers
 
 
 
+        ParticleManager _particleManager;
 
 
-        float horizontalSpeed = 0.01f;
+
+
+
+
+
+        protected float horizontalSpeed = 0.025f;
 
 
 
@@ -29,8 +40,12 @@ namespace WARDY.Abstracts.Controllers
 
         protected Rigidbody _rigidbody;
 
-        [SerializeField] protected float fireRate;
+        public ParticleSystem _enemyDestroyParticle;
+
+        [SerializeField] protected float fireRate = 1.24f;
         [SerializeField] protected float _health;
+
+
 
 
 
@@ -39,24 +54,32 @@ namespace WARDY.Abstracts.Controllers
 
         public Rigidbody GetRigidbody => _rigidbody;
 
-        public float FireRate => fireRate;
-        public float HorizontalSpeed => horizontalSpeed;
+        public float FireRate { get => fireRate; protected set => fireRate = value; }
+        public float HorizontalSpeed { get => horizontalSpeed; protected set => horizontalSpeed = value; }
 
-        public float Health => _health;
-
-
+        public float Health { get => _health; protected set => _health = value; }
 
 
 
 
-
-        protected void EnemyControllerFunctions()
+        private void Awake()
         {
+            _rigidbody = GetComponent<Rigidbody>();
+
             _enemyMovement = new EnemyMovement(this);
             _enemyFire = new EnemyFire(this);
             _enemyHealth = new EnemyHealth(this);
 
+            _particleManager = new ParticleManager(this);
         }
+
+        private void FixedUpdate()
+        {
+            EnemyFire();
+            EnemyMove();
+        }
+
+
 
 
         protected void EnemyMove()
@@ -79,7 +102,24 @@ namespace WARDY.Abstracts.Controllers
         {
             _health = _enemyHealth.IncreaseHealth(damage);
 
+            Debug.Log("enemy health: " + _health);
+            if (_health <= 0)
+            {
+                //EventManager.Broadcast(OnEnemyDestroyed);
+                //EventManager.Broadcast(GameEvent.OnEnemyDestroyed);
+                OnEnemyDestroyed?.Invoke();
+                this.gameObject.SetActive(false);
+
+
+            }
+
         }
+
+        protected void InstantiateParticle()
+        {
+            //_enemyDeathParticlesController.InstantiateEnemyDeathParticles(_deathParticles, this.transform);
+        }
+
 
 
         //movement

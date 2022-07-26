@@ -8,32 +8,13 @@ namespace WARDY.Controllers
     public class BasicEnemyController : EnemyController
     {
 
-        private void Awake()
+        private void Start()
         {
-
-
-            _rigidbody = GetComponent<Rigidbody>();
-
-            EnemyControllerFunctions();
-
-
-
+            HorizontalSpeed = 0.05f;
+            FireRate = 0.9f;
+            Health = 75f;
         }
 
-        private void Update()
-        {
-
-        }
-
-        private void FixedUpdate()
-        {
-
-            EnemyFire();
-            if (_health <= 0)
-            {
-                gameObject.SetActive(false);
-            }
-        }
 
 
     }

@@ -67,8 +67,9 @@ namespace WARDY.Controllers
 
             if (bulletLifeTime <= 0f)
             {
-                gameObject.SetActive(false);
                 bulletLifeTime = tempLifeTime;
+                gameObject.SetActive(false);
+
             }
 
 
