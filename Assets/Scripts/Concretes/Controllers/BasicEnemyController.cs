@@ -14,6 +14,8 @@ namespace WARDY.Controllers
             FireRate = 0.9f;
             Health = 75f;
             ScoreMultiplier = 1.25f;
+
+            _enemyHealthUIManager.InitializeEnemyHealthUI(Health);
         }
 
 

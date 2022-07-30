@@ -21,7 +21,7 @@ namespace WARDY.Abstracts.Controllers
         EnemyFire _enemyFire;
         EnemyHealth _enemyHealth;
         ParticleManager _particleManager;
-        EnemyHealthUIManager _enemyHealthUIManager;
+        protected EnemyHealthUIManager _enemyHealthUIManager;
 
 
 

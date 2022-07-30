@@ -24,11 +24,18 @@ namespace WARDY.Managers
 
             enemyHealthUI = _enemyController.EnemyHealthUI;
 
-            //enemyHealthUI.text = _enemyController.Health.ToString();
+            enemyHealthUI.text = _enemyController.Health.ToString();
 
             EventManager.EnemyGetHit += SetEnemyHealthUI;
 
         }
+
+        public void InitializeEnemyHealthUI(float health)
+        {
+            _enemyHealth = health;
+            enemyHealthUI.text = _enemyHealth.ToString();
+        }
+
 
 
         private void SetEnemyHealthUI()
