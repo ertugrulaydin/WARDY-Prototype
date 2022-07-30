@@ -3,27 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using WARDY.Abstracts.Controllers;
 
 
 namespace WARDY.Managers
 {
-    public class EnemyHealthUIManager : MonoBehaviour
+    public class EnemyHealthUIManager
     {
-        [SerializeField] private TMP_Text _enemyHealthUI;
-        private int _enemyHealth = 100;
+        private TMP_Text enemyHealthUI;
+
+        EnemyController _enemyController;
+        private float _enemyHealth;
 
 
-        private void Start()
+        public EnemyHealthUIManager(EnemyController enemyController)
         {
-            _enemyHealthUI.text = _enemyHealth.ToString();
+            _enemyController = enemyController;
+
+
+
+            enemyHealthUI = _enemyController.EnemyHealthUI;
+
+            //enemyHealthUI.text = _enemyController.Health.ToString();
+
             EventManager.EnemyGetHit += SetEnemyHealthUI;
 
         }
 
-        private void SetEnemyHealthUI(float _f)
+
+        private void SetEnemyHealthUI()
         {
-            _enemyHealth -= 30;
-            _enemyHealthUI.text = _enemyHealth.ToString();
+            _enemyHealth = _enemyController.Health;
+
+            enemyHealthUI.text = _enemyHealth.ToString();
+        }
+
+
+        private void OnDisable()
+        {
+            EventManager.EnemyGetHit -= SetEnemyHealthUI;
         }
     }
 }

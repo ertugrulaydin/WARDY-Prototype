@@ -26,7 +26,7 @@ public class BasicBullet : MonoBehaviour
 
         if (playerdamageable != null && _bulletController.Direction == -1)
         {
-            playerdamageable.Damage(_damage);
+            //playerdamageable.Damage(_damage);
             this.gameObject.SetActive(false);
         }
 

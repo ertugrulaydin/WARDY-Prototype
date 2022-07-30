@@ -7,8 +7,7 @@ using UnityEngine;
 using WARDY.Movements;
 using WARDY.Controllers;
 using WARDY.Managers;
-
-
+using TMPro;
 
 namespace WARDY.Abstracts.Controllers
 {
@@ -20,12 +19,9 @@ namespace WARDY.Abstracts.Controllers
 
         EnemyMovement _enemyMovement;
         EnemyFire _enemyFire;
-
         EnemyHealth _enemyHealth;
-
-
-
         ParticleManager _particleManager;
+        EnemyHealthUIManager _enemyHealthUIManager;
 
 
 
@@ -44,7 +40,7 @@ namespace WARDY.Abstracts.Controllers
         public ParticleSystem _enemyDestroyParticle;
 
         [SerializeField] protected float fireRate = 1.24f;
-        [SerializeField] protected float _health;
+        protected float _health;
 
         [SerializeField] protected float _scoreMultiplier;
 
@@ -57,12 +53,16 @@ namespace WARDY.Abstracts.Controllers
 
         public Rigidbody GetRigidbody => _rigidbody;
 
+        [SerializeField] private TMP_Text _enemyHealthUI;
+
         public float FireRate { get => fireRate; protected set => fireRate = value; }
         public float HorizontalSpeed { get => horizontalSpeed; protected set => horizontalSpeed = value; }
 
         public float Health { get => _health; protected set => _health = value; }
 
         public float ScoreMultiplier { get => _scoreMultiplier; protected set => _scoreMultiplier = value; }
+
+        public TMP_Text EnemyHealthUI { get => _enemyHealthUI; }
 
 
 
@@ -74,9 +74,13 @@ namespace WARDY.Abstracts.Controllers
             _enemyMovement = new EnemyMovement(this);
             _enemyFire = new EnemyFire(this);
             _enemyHealth = new EnemyHealth(this);
-
             _particleManager = new ParticleManager();
+            _enemyHealthUIManager = new EnemyHealthUIManager(this);
+
+
+
         }
+
 
         private void FixedUpdate()
         {
@@ -107,7 +111,7 @@ namespace WARDY.Abstracts.Controllers
         {
             _health = _enemyHealth.IncreaseHealth(damage);
 
-            EventManager.OnEnemyGetHit(_scoreMultiplier);
+            EventManager.OnEnemyGetHit();
             //Debug.Log("enemy health: " + _health);
             if (_health <= 0)
             {

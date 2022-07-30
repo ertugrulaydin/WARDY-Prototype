@@ -9,7 +9,7 @@ namespace WARDY.Controllers
     public class EnemyHealth
     {
         EnemyController _enemyController;
-        float _playerHealt;
+        float _enemyHealt;
 
         public EnemyHealth(EnemyController enemyController)
         {
@@ -18,9 +18,9 @@ namespace WARDY.Controllers
 
         public float IncreaseHealth(float damage)
         {
-            _playerHealt = _enemyController.Health;
-            _playerHealt -= damage;
-            return _playerHealt;
+            _enemyHealt = _enemyController.Health;
+            _enemyHealt -= damage;
+            return _enemyHealt;
         }
 
     }

@@ -18,9 +18,11 @@ namespace WARDY.Managers
         }
 
 
-        private void GameScore(float _scoreMultiplier)
+
+
+        private void GameScore()
         {
-            _score = (int)(_score + 100 * _scoreMultiplier);
+            _score = (int)(_score + 100);
 
             _gameScoreText.text = _score.ToString();
         }
