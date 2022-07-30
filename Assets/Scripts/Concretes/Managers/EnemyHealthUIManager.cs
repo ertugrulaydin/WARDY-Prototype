@@ -32,6 +32,7 @@ namespace WARDY.Managers
 
         public void InitializeEnemyHealthUI(float health)
         {
+            Debug.Log("buraya girdi" + health);
             _enemyHealth = health;
             enemyHealthUI.text = _enemyHealth.ToString();
         }

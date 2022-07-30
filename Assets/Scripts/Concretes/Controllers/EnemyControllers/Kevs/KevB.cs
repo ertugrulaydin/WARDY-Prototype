@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using WARDY.Abstracts.Controllers;
 
-namespace WARDY.Controllers
+namespace WARDY.Controllers.EnemyControllers.Kevs
 {
-    public class BasicEnemyController : EnemyController
+    public class KevB : KevController
     {
-
         private void Start()
         {
-            HorizontalSpeed = 0.025f;
-            FireRate = 0.9f;
-            Health = 75f;
-            ScoreMultiplier = 1.25f;
-
+            _verticalMovement = true;
+            KevsValues();
+            Debug.Log(Health);
             _enemyHealthUIManager.InitializeEnemyHealthUI(Health);
+
         }
-
-
-
     }
 }

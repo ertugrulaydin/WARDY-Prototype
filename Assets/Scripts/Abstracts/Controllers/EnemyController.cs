@@ -23,13 +23,17 @@ namespace WARDY.Abstracts.Controllers
         ParticleManager _particleManager;
         protected EnemyHealthUIManager _enemyHealthUIManager;
 
+        EnemyVerticalMovement _enemyVerticalMovement;
 
 
 
 
 
 
-        protected float horizontalSpeed = 0.025f;
+
+        protected float _horizontalSpeed = 0.025f;
+
+        protected bool _verticalMovement;
 
 
 
@@ -56,13 +60,15 @@ namespace WARDY.Abstracts.Controllers
         [SerializeField] private TMP_Text _enemyHealthUI;
 
         public float FireRate { get => fireRate; protected set => fireRate = value; }
-        public float HorizontalSpeed { get => horizontalSpeed; protected set => horizontalSpeed = value; }
+        public float HorizontalSpeed { get => _horizontalSpeed; protected set => _horizontalSpeed = value; }
 
         public float Health { get => _health; protected set => _health = value; }
 
         public float ScoreMultiplier { get => _scoreMultiplier; protected set => _scoreMultiplier = value; }
 
         public TMP_Text EnemyHealthUI { get => _enemyHealthUI; }
+
+
 
 
 
@@ -76,6 +82,7 @@ namespace WARDY.Abstracts.Controllers
             _enemyHealth = new EnemyHealth(this);
             _particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
+            _enemyVerticalMovement = new EnemyVerticalMovement(this);
 
 
 
@@ -86,6 +93,10 @@ namespace WARDY.Abstracts.Controllers
         {
             EnemyFire();
             EnemyMove();
+            if (_verticalMovement)
+            {
+                _enemyVerticalMovement.VerticalMove(this.transform);
+            }
         }
 
 

@@ -468,7 +468,8 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1213881565, guid: 82ea747b86ea3c7429f058cca5848984, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82ea747b86ea3c7429f058cca5848984, type: 3}
 --- !u!4 &912815579 stripped
 Transform:
@@ -909,7 +910,8 @@ PrefabInstance:
       propertyPath: fireRate
       value: 1.45
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1213881565, guid: 82ea747b86ea3c7429f058cca5848984, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82ea747b86ea3c7429f058cca5848984, type: 3}
 --- !u!1 &1537979515
 GameObject:
