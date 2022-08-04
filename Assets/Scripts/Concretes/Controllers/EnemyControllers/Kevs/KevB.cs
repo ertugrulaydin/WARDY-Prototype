@@ -6,13 +6,25 @@ using WARDY.Abstracts.Controllers;
 namespace WARDY.Controllers.EnemyControllers.Kevs
 {
     public class KevB : KevController
+
     {
+
+        private void Awake()
+        {
+            KevsValues();
+        }
         private void Start()
         {
+            fireRate = 2.5f;
+            _horizontalSpeed = 0.015f;
             _verticalMovement = true;
-            KevsValues();
-            Debug.Log(Health);
+            _verticalSpeed = 0.05f;
+
+            SubClassCreated();
+
             _enemyHealthUIManager.InitializeEnemyHealthUI(Health);
+
+
 
         }
     }

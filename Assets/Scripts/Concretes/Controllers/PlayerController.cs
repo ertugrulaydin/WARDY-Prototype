@@ -31,6 +31,8 @@ namespace WARDY.Controllers
 
         bool _isFire;
 
+        Vector3 _playerPosition;
+
 
 
         [SerializeField] Transform bulletTransform;
@@ -43,6 +45,8 @@ namespace WARDY.Controllers
         public bool IsFire => _isFire;
 
         public float Health => _health;
+
+        public Vector3 PlayerPosition => _playerPosition;
 
         private void Awake()
         {
@@ -81,7 +85,7 @@ namespace WARDY.Controllers
 
         private void FixedUpdate()
         {
-
+            _playerPosition = this.transform.position;
             _playerMovement.FixedTick(_inputValue);
             _playerFire.Tick();
 

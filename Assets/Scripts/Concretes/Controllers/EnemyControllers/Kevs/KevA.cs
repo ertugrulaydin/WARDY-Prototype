@@ -7,11 +7,23 @@ namespace WARDY.Controllers.EnemyControllers.Kevs
 {
     public class KevA : KevController
     {
+
+        private void Awake()
+        {
+
+        }
         private void Start()
         {
-            _verticalMovement = false;
+            fireRate = 3f;
+            _horizontalSpeed = 0.015f;
+
+            SubClassCreated();
+
+
+
             KevsValues();
-            Debug.Log(Health);
+
+
             _enemyHealthUIManager.InitializeEnemyHealthUI(Health);
 
         }

@@ -33,7 +33,11 @@ namespace WARDY.Abstracts.Controllers
 
         protected float _horizontalSpeed = 0.025f;
 
-        protected bool _verticalMovement;
+        protected float _verticalSpeed;
+
+        protected bool _verticalMovement = false;
+        bool _isSubClassCreated = false;
+
 
 
 
@@ -43,7 +47,7 @@ namespace WARDY.Abstracts.Controllers
 
         public ParticleSystem _enemyDestroyParticle;
 
-        [SerializeField] protected float fireRate = 1.24f;
+        [SerializeField] protected float fireRate;
         protected float _health;
 
         [SerializeField] protected float _scoreMultiplier;
@@ -68,12 +72,22 @@ namespace WARDY.Abstracts.Controllers
 
         public TMP_Text EnemyHealthUI { get => _enemyHealthUI; }
 
+        public float VerticalSpeed { get => _verticalSpeed; protected set => _verticalSpeed = value; }
+
 
 
 
 
 
         private void Awake()
+        {
+
+
+
+
+        }
+
+        protected void SubClassCreated()
         {
             _rigidbody = GetComponent<Rigidbody>();
 
@@ -82,20 +96,27 @@ namespace WARDY.Abstracts.Controllers
             _enemyHealth = new EnemyHealth(this);
             _particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
-            _enemyVerticalMovement = new EnemyVerticalMovement(this);
+            if (_verticalMovement)
+            {
+
+                _enemyVerticalMovement = new EnemyVerticalMovement(this);
+            }
 
 
-
+            _isSubClassCreated = true;
         }
 
 
         private void FixedUpdate()
         {
-            EnemyFire();
-            EnemyMove();
-            if (_verticalMovement)
+            if (_isSubClassCreated)
             {
-                _enemyVerticalMovement.VerticalMove(this.transform);
+                EnemyFire();
+                EnemyMove();
+                if (_verticalMovement)
+                {
+                    _enemyVerticalMovement.FixedTick(transform.position);
+                }
             }
         }
 
