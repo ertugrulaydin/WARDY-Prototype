@@ -11,7 +11,7 @@ namespace WARDY.Managers
     {
         [SerializeField] private Transform _playerTransform;
 
-        [SerializeField] List<GameObject> _enemies;
+        //[SerializeField] List<GameObject> _enemies;
 
         [SerializeField] GameObject _spawnPoints;
 
@@ -33,7 +33,10 @@ namespace WARDY.Managers
 
         private GameObject _enemyType;
 
+        private GameObject kev;
+
         private float _offset = 5f;
+
 
 
 
@@ -43,40 +46,36 @@ namespace WARDY.Managers
 
             for (int i = 0; i < _spawnPoints.transform.childCount; i++)
             {
+
                 _spawnPointsPosition.Add(_spawnPoints.transform.GetChild(i).position);
 
             }
-            _nextPosition = _spawnPointsPosition[_positionListIndex];
-
-
-
 
         }
 
 
         void FixedUpdate()
         {
+
             SpawnerPosition();
 
-            if (transform.position.x >= _nextPosition.x && _positionListIndex < _spawnPointsPosition.Count)
+            if (_positionListIndex < _spawnPointsPosition.Count)
             {
 
-                _spawnPointController = _spawnPoints.transform.GetChild(_positionListIndex).GetComponent<SpawnPointController>();
+                if ((int)transform.position.x == (int)_spawnPointsPosition[_positionListIndex].x)
+                {
 
+                    GetSpawnPointControllerValues();
 
-                _enemyType = _spawnPointController.EnemyType;
-                _enemyCount = _spawnPointController.SpawnedEnemyCount;
+                    _nextPosition = _spawnPointsPosition[_positionListIndex];
 
-                _enemySpawnPosition = _nextPosition;
+                    _enemySpawnPosition = _nextPosition;
 
-                SetActiveGameObject(_enemyType);
+                    SetActiveGameObject(_enemyType);
 
+                    _positionListIndex++;
 
-                _positionListIndex++;
-
-                _nextPosition = _spawnPointsPosition[_positionListIndex];
-
-
+                }
 
             }
         }
@@ -91,34 +90,45 @@ namespace WARDY.Managers
 
         private void SetActiveGameObject(GameObject enemyType)
         {
-            Debug.Log("spawn metodunda");
+
             for (int i = 0; i < _enemyCount; i++)
             {
                 if (_enemyType.name == "KevA")
                 {
 
-                    GameObject kevA = KevAPool.instance.GetPooledKevA();
-
-                    kevA.transform.position = _enemySpawnPosition;
-
-                    kevA.gameObject.SetActive(true);
+                    kev = KevAPool.instance.GetPooledKevA();
 
                 }
-                if (_enemyType.name == "KevB")
+                else if (_enemyType.name == "KevB")
                 {
 
-                    GameObject kevB = KevBPool.instance.GetPooledKevA();
-
-                    kevB.transform.position = _enemySpawnPosition;
-
-                    kevB.gameObject.SetActive(true);
+                    kev = KevBPool.instance.GetPooledKevA();
 
                 }
+
+                kev.transform.position = _enemySpawnPosition;
+
+                kev.gameObject.SetActive(true);
 
                 _enemySpawnPosition.x += _offset;
 
             }
 
+
+
+
+
+
+        }
+
+        private void GetSpawnPointControllerValues()
+        {
+
+            _spawnPointController = _spawnPoints.transform.GetChild(_positionListIndex).GetComponent<SpawnPointController>();
+
+
+            _enemyType = _spawnPointController.EnemyType;
+            _enemyCount = _spawnPointController.SpawnedEnemyCount;
 
         }
     }
