@@ -38,12 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: EnemyUI
-    uniqueID: 727776311
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer
-    uniqueID: 3737726799
+  - name: TransparentFX
+    uniqueID: 3838679377
+    locked: 0
+  - name: Ignore Raycast
+    uniqueID: 2663242639
+    locked: 0
+  - name: UI
+    uniqueID: 789588877
+    locked: 0
+  - name: EnemyUI
+    uniqueID: 727776311
     locked: 0

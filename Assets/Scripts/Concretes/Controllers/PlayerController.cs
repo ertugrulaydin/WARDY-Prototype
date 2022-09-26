@@ -50,8 +50,8 @@ namespace WARDY.Controllers
 
         private void Awake()
         {
-            GameObject obj = Instantiate(_basicBulletPool);
 
+            GameObject obj = Instantiate(_basicBulletPool);
 
             _input = new PlayerInput();
 

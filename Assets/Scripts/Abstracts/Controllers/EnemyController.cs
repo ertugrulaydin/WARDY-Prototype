@@ -14,15 +14,11 @@ namespace WARDY.Abstracts.Controllers
     public class EnemyController : MonoBehaviour, IEnemyDamageable
     {
 
-        //public event Action OnEnemyDestroyed;
-
-
         EnemyMovement _enemyMovement;
         EnemyFire _enemyFire;
         EnemyHealth _enemyHealth;
         ParticleManager _particleManager;
         protected EnemyHealthUIManager _enemyHealthUIManager;
-
         EnemyVerticalMovement _enemyVerticalMovement;
 
 
@@ -96,6 +92,7 @@ namespace WARDY.Abstracts.Controllers
             _enemyHealth = new EnemyHealth(this);
             _particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
+
             if (_verticalMovement)
             {
 
@@ -111,13 +108,20 @@ namespace WARDY.Abstracts.Controllers
         {
             if (_isSubClassCreated)
             {
+
                 EnemyFire();
+
                 EnemyMove();
+
                 if (_verticalMovement)
                 {
+
                     _enemyVerticalMovement.FixedTick(transform.position);
+
                 }
+
             }
+
         }
 
 
@@ -144,38 +148,17 @@ namespace WARDY.Abstracts.Controllers
             _health = _enemyHealth.IncreaseHealth(damage);
 
             EventManager.OnEnemyGetHit();
-            //Debug.Log("enemy health: " + _health);
+
             if (_health <= 0)
             {
-                //EventManager.Broadcast(OnEnemyDestroyed);
-                //EventManager.Broadcast(GameEvent.OnEnemyDestroyed);
-
-
-
-                //OnEnemyDestroyed?.Invoke();
-
-
-
-                //Messenger.Broadcast<Transform>("transform", gameObject.transform);
 
                 EventManager.OnEnemyDestroyed(gameObject);
 
-                //EventManager.Broadcast(EventManager.EnemyDestroyed);
-
-
                 this.gameObject.SetActive(false);
-
 
             }
 
         }
-
-        protected void InstantiateParticle()
-        {
-            //_enemyDeathParticlesController.InstantiateEnemyDeathParticles(_deathParticles, this.transform);
-        }
-
-
 
         //movement
 

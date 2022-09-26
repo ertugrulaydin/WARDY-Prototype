@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using WARDY.Controllers.EnemyControllers.Kevs;
 
 namespace WARDY.ObjectPools
 {
@@ -37,13 +37,14 @@ namespace WARDY.ObjectPools
 
 
 
-        public GameObject GetPooledKevA()
+        public GameObject GetPooledKevB()
         {
 
             for (int i = 0; i < _kevsB.Count; i++)
             {
                 if (!_kevsB[i].activeInHierarchy)
                 {
+                    _kevsB[i].gameObject.GetComponent<KevB>().DefaultHealth();
                     return _kevsB[i];
                 }
             }

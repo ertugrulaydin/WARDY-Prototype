@@ -7,7 +7,7 @@ namespace WARDY.Controllers
 {
     public class BulletController : MonoBehaviour
     {
-        [SerializeField] float bulletSpeed = 15f;
+        [SerializeField] float bulletSpeed = 15.5f;
 
         Rigidbody _rigidbody;
 

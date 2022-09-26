@@ -18,11 +18,17 @@ namespace WARDY.Movements
 
         #region Private
         float _verticalSpeed;
-        float _abovePoint;  //KevB's upper limit for vertical movement
+        float _abovePoint = 4.5f;  //KevB's upper limit for vertical movement
 
-        float _belowPoint;   //KevB's lower limit for vertical movement
+        float _belowPoint = -4.5f;  //KevB's lower limit for vertical movement
+
+        float _midPoint = 0;
+
+        float _targetPointAbove = 0.75f;
+        float _targetPointBelow = -0.75f;
 
         string _verticalMovementDirection = "";//KevB's first movement direction
+        string _movementType;
 
         #endregion
 
@@ -45,13 +51,29 @@ namespace WARDY.Movements
 
             _verticalSpeed = _enemyController.VerticalSpeed;
 
-            _abovePoint = _enemyController.transform.position.y + 1f;
+            if (_enemyController.transform.position.y == _abovePoint)
+            {
 
-            _belowPoint = _abovePoint - 2f;
+                _verticalMovementDirection = "down";
+                _movementType = "UpToDown";
 
-            _verticalMovementDirection = "up";
+            }
+
+            else if (_enemyController.transform.position.y == _belowPoint)
+            {
+
+                _verticalMovementDirection = "up";
+                _movementType = "DownToUp";
+
+            }
+
+            else if (_enemyController.transform.position.y == _midPoint)
+            {
 
 
+                _verticalMovementDirection = "middown";
+
+            }
 
         }
         public void FixedTick(Vector3 enemyPosition)
@@ -62,21 +84,64 @@ namespace WARDY.Movements
                 case "up":
 
                     _rigidbody.transform.Translate(new Vector3(0, (_verticalSpeed), 0));
-
-                    if (_enemyController.transform.position.y >= _abovePoint)
+                    if (_movementType == "DownToUp")
                     {
-                        _verticalMovementDirection = "down";
+
+                        if (_enemyController.transform.position.y >= _targetPointBelow)
+                        {
+                            _verticalMovementDirection = "down";
+                        }
                     }
+                    else if (_movementType == "UpToDown")
+                    {
+
+                        if (_enemyController.transform.position.y >= _abovePoint)
+                        {
+                            _verticalMovementDirection = "down";
+                        }
+                    }
+
+
 
                     break;
 
                 case "down":
 
                     _rigidbody.transform.Translate(new Vector3(0, -(_verticalSpeed), 0));
-
-                    if (_enemyController.transform.position.y <= _belowPoint)
+                    if (_movementType == "DownToUp")
                     {
-                        _verticalMovementDirection = "up";
+
+                        if (_enemyController.transform.position.y <= _belowPoint)
+                        {
+                            _verticalMovementDirection = "up";
+                        }
+                    }
+                    else if (_movementType == "UpToDown")
+                    {
+
+                        if (_enemyController.transform.position.y <= _targetPointAbove)
+                        {
+                            _verticalMovementDirection = "up";
+                        }
+                    }
+                    break;
+
+                case "middown":
+                    _rigidbody.transform.Translate(new Vector3(0, -(_verticalSpeed), 0));
+
+                    if (_enemyController.transform.position.y <= -2f)
+                    {
+                        _verticalMovementDirection = "midup";
+                    }
+
+                    break;
+
+                case "midup":
+                    _rigidbody.transform.Translate(new Vector3(0, (_verticalSpeed), 0));
+
+                    if (_enemyController.transform.position.y >= 2f)
+                    {
+                        _verticalMovementDirection = "middown";
                     }
 
                     break;
