@@ -26,8 +26,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213881560}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 1848151250}
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1213881564
 Canvas:
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 3
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1848151250}
   - component: {fileID: 1848151252}
   - component: {fileID: 1848151251}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,10 +132,10 @@ RectTransform:
   m_Father: {fileID: 1213881561}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 5}
+  m_SizeDelta: {x: 9, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1848151252
 CanvasRenderer:
@@ -273,7 +273,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508430145626781047}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4684421561862431646, guid: f304a4cd7416a044e8abb72540dc1138, type: 3}
 --- !u!23 &1508430145626781042
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -293,7 +293,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -6770148694545909422, guid: f304a4cd7416a044e8abb72540dc1138, type: 3}
+  - {fileID: -2057357566983282998, guid: f304a4cd7416a044e8abb72540dc1138, type: 3}
+  - {fileID: -365567352069944856, guid: f304a4cd7416a044e8abb72540dc1138, type: 3}
+  - {fileID: 4899101495243862955, guid: f304a4cd7416a044e8abb72540dc1138, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1508430145660688866
 Transform:
   m_ObjectHideFlags: 0
@@ -343,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 1508430145660688870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.25}
   m_Children:
   - {fileID: 1213881561}
   - {fileID: 1508430145626781040}
@@ -366,7 +369,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &1508430145660688868
 BoxCollider:
@@ -379,8 +382,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.0120943, y: 2.0665994, z: 1.9978422}
+  m_Center: {x: 0.007131219, y: -0.0058465004, z: 0.014254868}
 --- !u!114 &9041790354988602822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1508430146015854602}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,6 +441,10 @@ PrefabInstance:
     - target: {fileID: 6462779878028263816, guid: faabdab13868f034c9f730db51c87403, type: 3}
       propertyPath: m_Name
       value: EnemyBasicBulletPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263816, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
       propertyPath: m_RootOrder

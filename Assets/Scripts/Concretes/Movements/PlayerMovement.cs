@@ -27,6 +27,7 @@ namespace WARDY.Movements
         public void FixedTick(float inputValue)
         {
             _rigidbody.transform.Translate(new Vector3(_playerController.HorizontalSpeed, inputValue / 10, 0));
+            //_rigidbody.transform.Translate(new Vector3(0, inputValue / 10, 0));
         }
     }
 }

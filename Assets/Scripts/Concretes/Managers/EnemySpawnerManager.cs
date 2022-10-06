@@ -37,7 +37,6 @@ namespace WARDY.Managers
 
         private float _offset = 5f;
 
-        private int _testCounter = 0;
 
 
 
@@ -112,6 +111,8 @@ namespace WARDY.Managers
 
                 kev.gameObject.SetActive(true);
 
+                //EventManager.OnEnemySpawned();
+
 
                 _enemySpawnPosition.x += _offset;
 
@@ -133,8 +134,6 @@ namespace WARDY.Managers
             _enemyType = _spawnPointController.EnemyType;
             _enemyCount = _spawnPointController.SpawnedEnemyCount;
 
-            //_testCounter++;
-            //Debug.Log(_testCounter);
 
         }
     }
