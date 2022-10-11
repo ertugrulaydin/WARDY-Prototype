@@ -16,7 +16,7 @@ namespace WARDY.Managers
 
         public static event Action BossAction;
 
-        public static event Action EnemySpawned;
+        //public static event Action EnemySpawned;
 
 
 

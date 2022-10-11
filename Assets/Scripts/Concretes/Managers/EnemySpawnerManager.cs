@@ -113,7 +113,6 @@ namespace WARDY.Managers
 
                 //EventManager.OnEnemySpawned();
 
-
                 _enemySpawnPosition.x += _offset;
 
             }

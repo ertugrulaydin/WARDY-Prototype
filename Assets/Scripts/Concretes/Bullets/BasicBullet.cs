@@ -36,6 +36,13 @@ public class BasicBullet : MonoBehaviour
             enemydamageable.Damage(_damage);
 
         }
+
+        if (other.tag == "BorderWall")
+        {
+
+            this.gameObject.SetActive(false);
+
+        }
     }
 
 }

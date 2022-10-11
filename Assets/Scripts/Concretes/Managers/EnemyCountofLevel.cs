@@ -28,7 +28,8 @@ namespace WARDY.Managers
         {
 
 
-            _spawnPointsGameObject = this.transform.Find("SpawnPoints").gameObject;
+            //_spawnPointsGameObject = this.transform.Find("SpawnPoints").gameObject;
+            _spawnPointsGameObject = GameObject.FindGameObjectWithTag("SpawnPoints");
             _totalEnemyCount = _spawnPointsGameObject.transform.childCount;
 
             _remainingEnemyCount = _totalEnemyCount;

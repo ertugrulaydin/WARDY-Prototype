@@ -4,6 +4,7 @@ using UnityEngine;
 using WARDY.Controllers;
 
 
+
 namespace WARDY.Movements
 {
     public class BorderWallMovement : MonoBehaviour

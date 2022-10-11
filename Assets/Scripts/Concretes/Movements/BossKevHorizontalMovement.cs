@@ -44,8 +44,6 @@ namespace WARDY.Movements
 
             _targetHorizontalPosition = new Vector3(playerPosition.x, firstPosition.y, 0);
 
-            //Debug.Log(firstPosition);
-
             if (!_actionCompleted)
             {
                 if (_direction.Equals("forward"))
@@ -81,7 +79,6 @@ namespace WARDY.Movements
 
             _lerpValue += _lerp;
 
-            //Debug.Log(_lerp);
         }
 
         public void SetActionCompletedFalse()
@@ -89,6 +86,7 @@ namespace WARDY.Movements
             _actionCompleted = false;
 
         }
+
 
     }
 }

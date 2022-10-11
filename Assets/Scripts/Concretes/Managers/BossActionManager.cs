@@ -28,7 +28,7 @@ namespace WARDY.Managers
         {
 
             _boss.SetActive(true);
-            _boss.transform.position = new Vector3(_playerController.transform.position.x + 22.5f, 0, 0);
+            _boss.transform.position = new Vector3(_playerController.transform.position.x + 22.5f, 2.25f, 0);
             EventManager.BossAction -= ActivateBoss;
 
         }

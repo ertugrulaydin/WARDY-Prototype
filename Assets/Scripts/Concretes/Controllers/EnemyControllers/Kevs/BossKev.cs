@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using WARDY.Movements;
 using WARDY.Abstracts.Interfaces;
+using WARDY.Abstracts.Controllers;
 
 
 namespace WARDY.Controllers.EnemyControllers
 {
-    public class BossKev : MonoBehaviour, IBoss
+    public class BossKev : BossController
     {
 
         #region Private Field
@@ -22,7 +23,7 @@ namespace WARDY.Controllers.EnemyControllers
 
         float _actionTime;
 
-        float _timeCounter = 0;
+
 
         int _sendParameterCount = 0;
 
@@ -33,58 +34,34 @@ namespace WARDY.Controllers.EnemyControllers
         Vector3 _bossHorizontalMoveStartPos;
         Vector3 _bossHorizontalMoveTargetPlayerPos;
 
-        #endregion
 
-        #region SerializeField
-
-        [SerializeField] PlayerController _playerController;
 
         #endregion
-
-
-
 
         private void Start()
         {
 
             _bossKevVerticalMovement = new BossKevVerticalMovement(this);
 
+            _bossKevHorizontalMovement = new BossKevHorizontalMovement(this);
 
-            if (_playerController != null)
-            {
+            _actionTime = Random.Range(10, 15);
 
-                _bossKevHorizontalMovement = new BossKevHorizontalMovement(this);
-
-            }
-            else
-            {
-
-                Debug.Log("Player Controller is empty. Add Player Controller from inspector");
-
-            }
-
-            _actionTime = Random.Range(3, 5);
+            SubClassCreated();
 
         }
 
-
-        private void FixedUpdate()
+        public override void UpdatePositionAfterFirstMovement(Vector3 updatedPosition)
         {
-            _timeCounter += Time.deltaTime;
-
-            BossAction();
-
+            _bossKevVerticalMovement.SetFirstPos(updatedPosition);
         }
 
-        public void BossAction()
+        public override void BossAction()
         {
-
             if (_verticalMove)
             {
 
                 _sendParameterCount = 0;
-
-                //Debug.Log("action time: " + _actionTime + " time counter: " + _timeCounter);
 
                 if (_timeCounter >= _actionTime)
                 {
@@ -145,7 +122,7 @@ namespace WARDY.Controllers.EnemyControllers
 
                     _timeCounter = 0f;
 
-                    _actionTime = Random.Range(3, 5);
+                    _actionTime = Random.Range(10, 15);
 
                     _verticalMove = true;
 
@@ -153,9 +130,10 @@ namespace WARDY.Controllers.EnemyControllers
 
                 }
             }
-
         }
 
     }
+
 }
+
 

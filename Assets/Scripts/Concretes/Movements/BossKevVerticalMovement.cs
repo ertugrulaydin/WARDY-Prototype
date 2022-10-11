@@ -31,9 +31,9 @@ namespace WARDY.Movements
 
             _bossKev = bosskev;
 
-            _firstPosition = _bossKev.transform.position;
+            //_firstPosition = _bossKev.transform.position;
 
-            _secondPosition = _firstPosition - new Vector3(0, 4, 0);
+            //_secondPosition = _firstPosition - new Vector3(0, 4, 0);
 
             _lerpValue = 0;
 
@@ -66,6 +66,15 @@ namespace WARDY.Movements
 
 
             _lerpValue += 0.01f;
+
+        }
+
+        public void SetFirstPos(Vector3 firstPosition)
+        {
+
+            _firstPosition = firstPosition;
+
+            _secondPosition = _firstPosition - new Vector3(0, 4.5f, 0);
 
         }
 

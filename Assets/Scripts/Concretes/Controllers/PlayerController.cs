@@ -5,6 +5,7 @@ using UnityEngine;
 using WARDY.Inputs;
 using WARDY.ObjectPools;
 using WARDY.Movements;
+using WARDY.Managers;
 
 
 namespace WARDY.Controllers
@@ -30,6 +31,8 @@ namespace WARDY.Controllers
         float _health = 100;
 
         bool _isFire;
+
+        bool _canMoveForward = true;
 
         Vector3 _playerPosition;
 
@@ -68,7 +71,7 @@ namespace WARDY.Controllers
 
         private void Start()
         {
-
+            EventManager.BossAction += PlayerCanMoveForward;
         }
 
 
@@ -78,6 +81,12 @@ namespace WARDY.Controllers
             _isFire = _input.isFire;
 
             _inputValue = _input.isUpDown;
+            if (!_canMoveForward)
+            {
+
+                _horizontalSpeed = 0;
+
+            }
 
         }
 
@@ -86,7 +95,10 @@ namespace WARDY.Controllers
         private void FixedUpdate()
         {
             _playerPosition = this.transform.position;
+
             _playerMovement.FixedTick(_inputValue);
+
+
             _playerFire.Tick();
 
         }
@@ -100,6 +112,20 @@ namespace WARDY.Controllers
             {
                 Time.timeScale = 0;
             }
+        }
+
+        private void PlayerCanMoveForward()
+        {
+
+            _canMoveForward = false;
+
+        }
+
+        private void OnDisable()
+        {
+
+            EventManager.BossAction -= PlayerCanMoveForward;
+
         }
 
 

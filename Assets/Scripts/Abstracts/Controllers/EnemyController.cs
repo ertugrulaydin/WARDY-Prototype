@@ -109,7 +109,7 @@ namespace WARDY.Abstracts.Controllers
             if (_isSubClassCreated)
             {
 
-                EnemyFire();
+                //EnemyFire();
 
                 EnemyMove();
 

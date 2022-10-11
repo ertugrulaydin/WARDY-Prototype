@@ -7,7 +7,7 @@ namespace WARDY.Abstracts.Interfaces
 {
     public interface IBoss
     {
-        void BossAction();
+        abstract void BossAction();
 
     }
 }
