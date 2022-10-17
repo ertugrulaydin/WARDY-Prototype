@@ -15,7 +15,7 @@ namespace WARDY.Managers
             //_enemyController = enemyController;
             //_enemyController.OnEnemyDestroyed += InstantiateEnemyDeathParticle;
 
-            EventManager.EnemyDestroyed += InstantiateEnemyDeathParticle;
+            //EventManager.EnemyDestroyed += InstantiateEnemyDeathParticle;
 
 
 
@@ -23,7 +23,7 @@ namespace WARDY.Managers
         }
         private void OnDisable()
         {
-            EventManager.EnemyDestroyed -= InstantiateEnemyDeathParticle;
+            //EventManager.EnemyDestroyed -= InstantiateEnemyDeathParticle;
         }
 
 

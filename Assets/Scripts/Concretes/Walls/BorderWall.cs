@@ -20,7 +20,7 @@ namespace WARDY.Walls
             _enemydamageable = other.gameObject.GetComponent<IEnemyDamageable>();
 
 
-            if (_enemydamageable != null)
+            if (_enemydamageable != null && this.gameObject.name != "BorderWall_Front")
             {
                 other.gameObject.SetActive(false);
                 EventManager.OnEnemyDestroyedByBorder();

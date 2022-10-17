@@ -13,7 +13,7 @@ namespace WARDY.Controllers
 
         [SerializeField] private GameObject _enemyType;
 
-        [SerializeField] private int _spawnedEnemyCount;
+        //[SerializeField] private int _spawnedEnemyCount;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace WARDY.Controllers
 
         public GameObject EnemyType => _enemyType;
 
-        public int SpawnedEnemyCount => _spawnedEnemyCount;
+        //public int SpawnedEnemyCount => _spawnedEnemyCount;
 
         public Vector3 SpawnPointPosition => _spawnPointPosition;
 

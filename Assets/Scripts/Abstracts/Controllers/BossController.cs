@@ -4,11 +4,12 @@ using UnityEngine;
 using WARDY.Movements;
 using WARDY.Controllers;
 using WARDY.Abstracts.Interfaces;
+using WARDY.Managers;
 
 
 namespace WARDY.Abstracts.Controllers
 {
-    public abstract class BossController : MonoBehaviour, IBoss
+    public abstract class BossController : MonoBehaviour, IBoss, IEnemyDamageable
     {
 
 
@@ -23,6 +24,10 @@ namespace WARDY.Abstracts.Controllers
 
         BossFirstMovement _bossFirstMovement;
 
+        IPlayerDamageable _playerDamageable;
+
+        EnemyHealth _enemyHealth;
+
         #endregion
 
 
@@ -34,14 +39,17 @@ namespace WARDY.Abstracts.Controllers
 
         protected bool _firstMoveCompleted = false;
 
+        protected float _health;
+
         #endregion
 
 
         #region Properties
 
-        public float FirstMoveSpeed() => _firstMoveSpeed;
+        public float FirstMoveSpeed => _firstMoveSpeed;
 
         public bool FirstMoveCompleted { get => _firstMoveCompleted; set => _firstMoveCompleted = value; }
+        public float Health { get => _health; set => _health = value; }
 
         #endregion
 
@@ -50,6 +58,8 @@ namespace WARDY.Abstracts.Controllers
         {
 
             _bossFirstMovement = new BossFirstMovement(this, _playerController);
+
+            _enemyHealth = new EnemyHealth(this.gameObject);
 
         }
 
@@ -76,15 +86,42 @@ namespace WARDY.Abstracts.Controllers
 
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            _playerDamageable = other.gameObject.GetComponent<IPlayerDamageable>();
+
+            if (_playerDamageable != null)
+            {
+
+                EventManager.PlayerTouchSomething(this.gameObject);
+
+                this.gameObject.SetActive(false);
+
+            }
+        }
+
         public abstract void UpdatePositionAfterFirstMovement(Vector3 updatedPosition);
 
 
         public abstract void BossAction();
 
+        public void Damage(float damage)
+        {
+            _health = _enemyHealth.IncreaseHealth(damage);
 
+            Debug.Log(_health);
 
+            //EventManager.OnEnemyGetHit(this);
 
+            if (_health <= 0)
+            {
 
+                //EventManager.OnEnemyDestroyed(gameObject);
+
+                this.gameObject.SetActive(false);
+
+            }
+        }
     }
 }
 

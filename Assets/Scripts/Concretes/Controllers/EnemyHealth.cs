@@ -9,18 +9,44 @@ namespace WARDY.Controllers
     public class EnemyHealth
     {
         EnemyController _enemyController;
-        float _enemyHealt;
 
-        public EnemyHealth(EnemyController enemyController)
+        BossController _bossController;
+        float _enemyHealth;
+        /* 
+                public EnemyHealth(EnemyController enemyController)
+                {
+                    _enemyController = enemyController;
+                }
+         */
+
+        public EnemyHealth(GameObject enemy)
         {
-            _enemyController = enemyController;
+            _enemyController = enemy.GetComponent<EnemyController>();
+
+            if (_enemyController == null)
+            {
+                _bossController = enemy.GetComponent<BossController>();
+            }
         }
 
         public float IncreaseHealth(float damage)
         {
-            _enemyHealt = _enemyController.Health;
-            _enemyHealt -= damage;
-            return _enemyHealt;
+
+            if (_enemyController != null)
+            {
+
+                _enemyHealth = _enemyController.Health;
+
+            }
+            else
+            {
+
+                _enemyHealth = _bossController.Health;
+
+            }
+            _enemyHealth -= damage;
+
+            return _enemyHealth;
         }
 
     }

@@ -22,6 +22,8 @@ namespace WARDY.Movements
             _rigidbody = playerController.GetComponent<Rigidbody>();
             //Debug.Log("playermover oluştu");
 
+
+
         }
 
         public void FixedTick(float inputValue)

@@ -5,19 +5,19 @@ using WARDY.Abstracts.Controllers;
 
 namespace WARDY.Controllers.EnemyControllers.Kevs
 {
-    public class KevA : KevController
+    public class KevA : EnemyController
     {
-        private void Start()
+
+        public override void SetDefaultVariables()
         {
+
             fireRate = 3f;
 
-            _horizontalSpeed = 0.015f;
+            _horizontalSpeed = 0.025f;
+
+            _health = 100f;
 
             SubClassCreated();
-
-            KevsValues();
-
-            _enemyHealthUIManager.InitializeEnemyHealthUI(Health);
 
         }
     }

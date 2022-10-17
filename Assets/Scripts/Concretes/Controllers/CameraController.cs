@@ -9,9 +9,7 @@ namespace WARDY.Controllers
     {
         [SerializeField] PlayerController _playerController;
 
-
-
-        private void FixedUpdate()
+        private void Update()
         {
             transform.position = new Vector3(_playerController.transform.position.x + 9, 0, -10);
         }

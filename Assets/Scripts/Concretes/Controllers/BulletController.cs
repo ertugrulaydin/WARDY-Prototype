@@ -11,20 +11,9 @@ namespace WARDY.Controllers
 
         Rigidbody _rigidbody;
 
-        [SerializeField] float bulletLifeTime;
-        float tempLifeTime;
-
         [SerializeField] int direction;
 
-        [SerializeField] float countdown;
-
-
         public int Direction => direction;
-
-
-
-
-
 
 
 
@@ -37,18 +26,9 @@ namespace WARDY.Controllers
 
         }
 
-        private void Start()
-        {
-            tempLifeTime = bulletLifeTime;
-        }
-
 
         private void FixedUpdate()
         {
-
-
-            bulletLifeTime -= countdown;
-
 
             if (direction == 1)
             {
@@ -60,26 +40,6 @@ namespace WARDY.Controllers
                 _rigidbody.velocity = Vector2.left * bulletSpeed;
             }
 
-
-
-
-
-
-            if (bulletLifeTime <= 0f)
-            {
-                bulletLifeTime = tempLifeTime;
-                gameObject.SetActive(false);
-
-            }
-
-
-
-
         }
-
-
-
-
-
     }
 }

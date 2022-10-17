@@ -37,7 +37,7 @@ namespace WARDY.Movements
 
             _boss = boss;
             _player = player;
-            _speed = _boss.FirstMoveSpeed();
+            _speed = _boss.FirstMoveSpeed;
 
 
         }

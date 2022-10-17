@@ -6,6 +6,7 @@ using WARDY.Inputs;
 using WARDY.ObjectPools;
 using WARDY.Movements;
 using WARDY.Managers;
+using WARDY.Abstracts.Interfaces;
 
 
 namespace WARDY.Controllers
@@ -22,19 +23,31 @@ namespace WARDY.Controllers
 
         BasicBulletPool basicBulletPool;
 
+        IEnemyDamageable _enemydamageable;
+
+        IBoss _boss;
+
 
 
         float _inputValue;
 
         float _horizontalSpeed = 0.01f;
 
-        float _health = 100;
+        float _totalHealth = 100;
+
+        float _health;
 
         bool _isFire;
 
         bool _canMoveForward = true;
 
+        bool _isImmune = false;
+
         Vector3 _playerPosition;
+
+        float _immuneTimeCounter = 0f;
+
+        //int debugCounter = 1;
 
 
 
@@ -47,9 +60,13 @@ namespace WARDY.Controllers
 
         public bool IsFire => _isFire;
 
-        public float Health => _health;
+        public float Health { get => _health; set => _health = value; }
 
-        public Vector3 PlayerPosition => _playerPosition;
+        public float TotalHealth => _totalHealth;
+
+        public bool IsImmune { get => _isImmune; set => _isImmune = value; }
+
+
 
         private void Awake()
         {
@@ -72,6 +89,8 @@ namespace WARDY.Controllers
         private void Start()
         {
             EventManager.BossAction += PlayerCanMoveForward;
+
+            _health = _totalHealth;
         }
 
 
@@ -81,6 +100,7 @@ namespace WARDY.Controllers
             _isFire = _input.isFire;
 
             _inputValue = _input.isUpDown;
+
             if (!_canMoveForward)
             {
 
@@ -88,16 +108,27 @@ namespace WARDY.Controllers
 
             }
 
+            if (_isImmune)
+            {
+                _immuneTimeCounter += Time.time * Time.deltaTime;
+
+                if (_immuneTimeCounter >= 2.5f)
+                {
+                    _isImmune = false;
+                }
+            }
+
+
+
         }
 
 
 
         private void FixedUpdate()
         {
-            _playerPosition = this.transform.position;
+            //_playerPosition = this.transform.position;
 
             _playerMovement.FixedTick(_inputValue);
-
 
             _playerFire.Tick();
 
@@ -107,11 +138,9 @@ namespace WARDY.Controllers
         {
             _health = _playerHealth.IncreaseHealth(damage);
 
+            //Debug.Log("debug count: " + debugCounter + "health: " + _health);
+            //debugCounter += 1;
 
-            if (_health <= 0)
-            {
-                Time.timeScale = 0;
-            }
         }
 
         private void PlayerCanMoveForward()
@@ -128,54 +157,12 @@ namespace WARDY.Controllers
 
         }
 
-
-
-        /*
-
-        IEnumerator PlayerFire()
+        public void SetPlayerPositionAfterReduceChange()
         {
 
-            yield return new WaitForSeconds(.1f);
-        }
-        
-        private void FireListener()
-        {
+            transform.position = new Vector3(transform.position.x, 0, 0);
 
         }
-        
-        void PlayerMovement(float inputValue)
-        {
-
-        _rigidbody.transform.Translate(new Vector3(0, inputValue / 10, 0));
-
-        }
-
-
-        public void Fire()
-        {
-        GameObject bullet = BasicBulletPool._instance.GetPooledObject();
-
-        if (bullet != null)
-        {
-            bullet.transform.position = bulletTransform.position;
-            bullet.SetActive(true);
-        }
-
-        }
-
-
-        private void InputListener()
-        {
-
-
-        _input.PlayerMove.UpDown.performed += context => PlayerMovement(context.ReadValue<float>());
-
-        _input.PlayerMove.Fire.performed += context => Fire();
-
-
-        }
-        */
-
 
     }
 }

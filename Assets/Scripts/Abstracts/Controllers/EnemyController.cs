@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 using WARDY.Movements;
@@ -11,7 +12,7 @@ using TMPro;
 
 namespace WARDY.Abstracts.Controllers
 {
-    public class EnemyController : MonoBehaviour, IEnemyDamageable
+    public abstract class EnemyController : MonoBehaviour, IEnemyDamageable
     {
 
         EnemyMovement _enemyMovement;
@@ -19,7 +20,11 @@ namespace WARDY.Abstracts.Controllers
         EnemyHealth _enemyHealth;
         ParticleManager _particleManager;
         protected EnemyHealthUIManager _enemyHealthUIManager;
-        EnemyVerticalMovement _enemyVerticalMovement;
+        protected EnemyVerticalMovement _enemyVerticalMovement;
+
+        IPlayerDamageable _playerDamageable;
+
+        EnemyController _enemyController;
 
 
 
@@ -27,7 +32,7 @@ namespace WARDY.Abstracts.Controllers
 
 
 
-        protected float _horizontalSpeed = 0.025f;
+        protected float _horizontalSpeed = 0.005f;
 
         protected float _verticalSpeed;
 
@@ -47,6 +52,10 @@ namespace WARDY.Abstracts.Controllers
         protected float _health;
 
         [SerializeField] protected float _scoreMultiplier;
+
+        [SerializeField] RawImage _healthBarImage;
+
+        [SerializeField] GameObject _healthPanel;
 
 
 
@@ -70,27 +79,23 @@ namespace WARDY.Abstracts.Controllers
 
         public float VerticalSpeed { get => _verticalSpeed; protected set => _verticalSpeed = value; }
 
+        public RawImage HealthBarImage { get => _healthBarImage; set => _healthBarImage = value; }
+
+        public GameObject HealthPanel { get => _healthPanel; set => _healthPanel = value; }
 
 
 
 
-
-        private void Awake()
-        {
-
-
-
-
-        }
 
         protected void SubClassCreated()
         {
+
             _rigidbody = GetComponent<Rigidbody>();
 
             _enemyMovement = new EnemyMovement(this);
             _enemyFire = new EnemyFire(this);
-            _enemyHealth = new EnemyHealth(this);
-            _particleManager = new ParticleManager();
+            _enemyHealth = new EnemyHealth(this.gameObject);
+            //_particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
 
             if (_verticalMovement)
@@ -99,9 +104,9 @@ namespace WARDY.Abstracts.Controllers
                 _enemyVerticalMovement = new EnemyVerticalMovement(this);
             }
 
-
             _isSubClassCreated = true;
         }
+
 
 
         private void FixedUpdate()
@@ -109,7 +114,7 @@ namespace WARDY.Abstracts.Controllers
             if (_isSubClassCreated)
             {
 
-                //EnemyFire();
+                EnemyFire();
 
                 EnemyMove();
 
@@ -147,7 +152,7 @@ namespace WARDY.Abstracts.Controllers
         {
             _health = _enemyHealth.IncreaseHealth(damage);
 
-            EventManager.OnEnemyGetHit();
+            EventManager.OnEnemyGetHit(this);
 
             if (_health <= 0)
             {
@@ -159,6 +164,22 @@ namespace WARDY.Abstracts.Controllers
             }
 
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            _playerDamageable = other.gameObject.GetComponent<IPlayerDamageable>();
+
+            if (_playerDamageable != null)
+            {
+
+                EventManager.PlayerTouchSomething(this.gameObject);
+
+                this.gameObject.SetActive(false);
+
+            }
+        }
+
+        public abstract void SetDefaultVariables();
 
         //movement
 

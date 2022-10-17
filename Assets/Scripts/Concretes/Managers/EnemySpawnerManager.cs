@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WARDY.ObjectPools;
 using WARDY.Controllers;
-
+using WARDY.Abstracts.Controllers;
 
 namespace WARDY.Managers
 {
@@ -92,30 +92,34 @@ namespace WARDY.Managers
         private void SetActiveGameObject(GameObject enemyType)
         {
 
-            for (int i = 0; i < _enemyCount; i++)
+            //for (int i = 0; i < _enemyCount; i++)
+            // {
+
+            if (_enemyType.name == "KevA")
             {
-                if (_enemyType.name == "KevA")
-                {
 
-                    kev = KevAPool.instance.GetPooledKevA();
-
-                }
-                else if (_enemyType.name == "KevB")
-                {
-
-                    kev = KevBPool.instance.GetPooledKevB();
-
-                }
-
-                kev.transform.position = _enemySpawnPosition;
-
-                kev.gameObject.SetActive(true);
-
-                //EventManager.OnEnemySpawned();
-
-                _enemySpawnPosition.x += _offset;
+                kev = KevAPool.instance.GetPooledKevA();
 
             }
+            else if (_enemyType.name == "KevB")
+            {
+
+                kev = KevBPool.instance.GetPooledKevB();
+
+            }
+
+
+
+            kev.gameObject.SetActive(true);
+
+            kev.transform.position = _enemySpawnPosition;
+
+            kev.gameObject.GetComponent<EnemyController>().SetDefaultVariables();
+
+
+            _enemySpawnPosition.x += _offset;
+
+            // }
 
 
 
@@ -131,7 +135,6 @@ namespace WARDY.Managers
 
 
             _enemyType = _spawnPointController.EnemyType;
-            _enemyCount = _spawnPointController.SpawnedEnemyCount;
 
 
         }

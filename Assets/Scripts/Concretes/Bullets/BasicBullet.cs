@@ -2,21 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WARDY.Controllers;
+using WARDY.Managers;
+using WARDY.Abstracts.Interfaces;
 
-public class BasicBullet : MonoBehaviour
+public class BasicBullet : MonoBehaviour, IBullet
 {
 
     [SerializeField] float _damage;
     BulletController _bulletController;
-
-
-
     GameObject _parent;
     IPlayerDamageable playerdamageable;
     IEnemyDamageable enemydamageable;
 
+    public float Damage => _damage;
+
 
     private void OnTriggerEnter(Collider other)
+    {
+        GiveDamage(other);
+    }
+
+    public void GiveDamage(Collider other)
     {
 
         _bulletController = GetComponentInParent<BulletController>();
@@ -27,6 +33,7 @@ public class BasicBullet : MonoBehaviour
         if (playerdamageable != null && _bulletController.Direction == -1)
         {
             //playerdamageable.Damage(_damage);
+            EventManager.PlayerTouchSomething(this.gameObject);
             this.gameObject.SetActive(false);
         }
 

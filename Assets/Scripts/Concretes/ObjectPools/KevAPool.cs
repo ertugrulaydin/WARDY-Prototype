@@ -44,7 +44,6 @@ namespace WARDY.ObjectPools
             {
                 if (!_kevsA[i].activeInHierarchy)
                 {
-                    _kevsA[i].gameObject.GetComponent<KevA>().DefaultHealth();
                     return _kevsA[i];
                 }
             }

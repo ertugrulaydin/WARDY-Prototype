@@ -44,7 +44,11 @@ namespace WARDY.ObjectPools
             {
                 if (!_kevsB[i].activeInHierarchy)
                 {
-                    _kevsB[i].gameObject.GetComponent<KevB>().DefaultHealth();
+                    /* 
+                                        _kevsB[i].gameObject.transform.position = new Vector3(0, 0, 0);
+
+                                        _kevsB[i].gameObject.GetComponent<KevB>().SetDefaultVariables();
+                     */
                     return _kevsB[i];
                 }
             }

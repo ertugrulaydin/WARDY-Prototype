@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using WARDY.Abstracts.Controllers;
 
 namespace WARDY.Managers
 {
@@ -20,7 +20,7 @@ namespace WARDY.Managers
 
 
 
-        private void GameScore()
+        private void GameScore(EnemyController enemyController)
         {
             _score = (int)(_score + 100);
 

@@ -23,6 +23,8 @@ namespace WARDY.Controllers.EnemyControllers
 
         float _actionTime;
 
+        float _kevBossHealth = 50000f;
+
 
 
         int _sendParameterCount = 0;
@@ -46,6 +48,8 @@ namespace WARDY.Controllers.EnemyControllers
             _bossKevHorizontalMovement = new BossKevHorizontalMovement(this);
 
             _actionTime = Random.Range(10, 15);
+
+            Health = _kevBossHealth;
 
             SubClassCreated();
 

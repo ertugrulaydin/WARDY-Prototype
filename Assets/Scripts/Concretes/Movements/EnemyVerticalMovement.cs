@@ -22,7 +22,10 @@ namespace WARDY.Movements
 
         float _belowPoint = -4.5f;  //KevB's lower limit for vertical movement
 
-        float _midPoint = 0;
+        float _midPoint = 0f;
+
+        float _midAbove = 1.5f;
+        float _midBelow = -1.5f;
 
         float _targetPointAbove = 0.75f;
         float _targetPointBelow = -0.75f;
@@ -39,17 +42,11 @@ namespace WARDY.Movements
 
             _enemyController = enemyController;
 
-            NonMonoBehaviourClassAwake();
-
-        }
-
-        #endregion
-        private void NonMonoBehaviourClassAwake()
-        {
-
             _rigidbody = _enemyController.GetRigidbody;
 
             _verticalSpeed = _enemyController.VerticalSpeed;
+
+
 
             if (_enemyController.transform.position.y == _abovePoint)
             {
@@ -75,7 +72,26 @@ namespace WARDY.Movements
 
             }
 
+            else if (_enemyController.transform.position.y == _midAbove)
+            {
+
+
+                _verticalMovementDirection = "midAboveDown";
+
+            }
+
+            else if (_enemyController.transform.position.y == _midBelow)
+            {
+
+
+                _verticalMovementDirection = "midBelowUp";
+
+            }
+
         }
+
+        #endregion
+
         public void FixedTick(Vector3 enemyPosition)
         {
 
@@ -142,6 +158,26 @@ namespace WARDY.Movements
                     if (_enemyController.transform.position.y >= 2f)
                     {
                         _verticalMovementDirection = "middown";
+                    }
+
+                    break;
+
+                case "midAboveDown":
+                    _rigidbody.transform.Translate(new Vector3(0, -(_verticalSpeed), 0));
+
+                    if (_enemyController.transform.position.y <= -1.5f)
+                    {
+                        _verticalMovementDirection = "midBelowUp";
+                    }
+
+                    break;
+
+                case "midBelowUp":
+                    _rigidbody.transform.Translate(new Vector3(0, (_verticalSpeed), 0));
+
+                    if (_enemyController.transform.position.y >= 1.5f)
+                    {
+                        _verticalMovementDirection = "midAboveDown";
                     }
 
                     break;
