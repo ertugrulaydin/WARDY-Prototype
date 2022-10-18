@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7940060840658218248}
   - component: {fileID: 7940060840658218249}
   - component: {fileID: 7940060840658218250}
-  - component: {fileID: 7940060840658218261}
   - component: {fileID: 6742816523591419960}
   - component: {fileID: 7940060840658218251}
   m_Layer: 0
@@ -98,22 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7940060840658218261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7940060840658218252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d1d1846fb4b60478fb3896673b1f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 5
-  bulletLifeTime: 60
-  direction: -1
-  countdown: 0.1
 --- !u!114 &6742816523591419960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f4857238fe794419d3ebc20b8890b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 10
+  direction: -1
   _damage: 25
 --- !u!54 &7940060840658218251
 Rigidbody:

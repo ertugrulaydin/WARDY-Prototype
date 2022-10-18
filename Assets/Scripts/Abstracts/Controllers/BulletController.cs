@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WARDY.Abstracts.Interfaces;
 
-
-namespace WARDY.Controllers
+namespace WARDY.Abstracts.Controllers
 {
-    public class BulletController : MonoBehaviour
+    public abstract class BulletController : MonoBehaviour, IBullet
     {
         [SerializeField] float bulletSpeed = 15.5f;
 
@@ -41,5 +41,9 @@ namespace WARDY.Controllers
             }
 
         }
+
+        public abstract void GiveDamage(Collider other);
     }
 }
+
+

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WARDY.Controllers;
 using WARDY.Managers;
-using WARDY.Abstracts.Interfaces;
+using WARDY.Abstracts.Controllers;
 
-public class BasicBullet : MonoBehaviour, IBullet
+
+public class BasicBullet : BulletController
 {
 
     [SerializeField] float _damage;
@@ -22,7 +22,7 @@ public class BasicBullet : MonoBehaviour, IBullet
         GiveDamage(other);
     }
 
-    public void GiveDamage(Collider other)
+    public override void GiveDamage(Collider other)
     {
 
         _bulletController = GetComponentInParent<BulletController>();
