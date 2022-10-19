@@ -835,7 +835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &130951007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3589,7 +3589,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716915290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1100433148}
+        m_TargetAssemblyTypeName: WARDY.Managers.UIManager, Assembly-CSharp
+        m_MethodName: OnClickTryAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &716915290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5819,6 +5831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameScoreText: {fileID: 2072490614}
+  _gameOverObject: {fileID: 130951006}
 --- !u!4 &1107355796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8374627422084511690, guid: 74c8ca4cee2ac9a47846ea3bf14483c3, type: 3}
@@ -6489,7 +6502,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1229394309}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1100433148}
+        m_TargetAssemblyTypeName: WARDY.Managers.UIManager, Assembly-CSharp
+        m_MethodName: OnClickMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1229394309
 MonoBehaviour:
   m_ObjectHideFlags: 0

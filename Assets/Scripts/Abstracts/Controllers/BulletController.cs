@@ -15,6 +15,10 @@ namespace WARDY.Abstracts.Controllers
 
         public int Direction => direction;
 
+        [SerializeField] protected float _damage;
+
+        public float Damage => _damage;
+
 
 
 

@@ -8,14 +8,17 @@ using WARDY.Abstracts.Controllers;
 public class BasicBullet : BulletController
 {
 
-    [SerializeField] float _damage;
+
     BulletController _bulletController;
     GameObject _parent;
     IPlayerDamageable playerdamageable;
     IEnemyDamageable enemydamageable;
 
-    public float Damage => _damage;
 
+    private void Start()
+    {
+        _damage = 25f;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

@@ -20,6 +20,8 @@ namespace WARDY.Managers
 
         public static event Action StartGame;
 
+        public static event Action GameOver;
+
         //public static event Action EnemySpawned;
 
 
@@ -36,12 +38,9 @@ namespace WARDY.Managers
 
         public static void PlayerTouchSomething(GameObject obj) => ReducePlayerChange?.Invoke(obj);
 
-        public static void OnStartGame()
-        {
+        public static void OnStartGame() => StartGame?.Invoke();
 
-            StartGame?.Invoke();
-
-        }
+        public static void OnGameOver() => GameOver?.Invoke();
 
         //public static void OnEnemySpawned() => EnemySpawned.Invoke();
     }

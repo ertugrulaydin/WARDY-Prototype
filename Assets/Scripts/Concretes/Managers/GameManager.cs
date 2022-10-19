@@ -17,7 +17,6 @@ namespace WARDY.Managers
 
         #region SerializeField
 
-        [SerializeField] PlayerChangeManager _playerChangeManager;
 
         #endregion
 
@@ -45,6 +44,8 @@ namespace WARDY.Managers
                 Destroy(this.gameObject);
             }
 
+            Debug.Log("try againden sonra timescale çalışmıyor");
+
         }
 
 
@@ -53,18 +54,19 @@ namespace WARDY.Managers
             EventManager.StartGame += LoadLevel;
         }
 
-        private void Update()
+
+
+        public void LoadLevel(int index)
         {
-            if (_playerChangeManager.PlayerChange <= 0)
-            {
-                Time.timeScale = 0;
-            }
+
+            SceneManager.LoadScene(index);
         }
 
-        private void LoadLevel()
+        public void LoadLevel()
         {
 
             SceneManager.LoadScene(1);
+
         }
 
         private void OnDisable()

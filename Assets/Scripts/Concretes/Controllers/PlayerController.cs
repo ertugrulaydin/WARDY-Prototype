@@ -138,7 +138,7 @@ namespace WARDY.Controllers
         {
             _health = _playerHealth.IncreaseHealth(damage);
 
-            //Debug.Log("debug count: " + debugCounter + "health: " + _health);
+            //Debug.Log("health: " + _health);
             //debugCounter += 1;
 
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using WARDY.Controllers;
 using WARDY.Walls;
 using WARDY.Abstracts.Interfaces;
+using WARDY.Abstracts.Controllers;
 
 
 
@@ -35,7 +36,20 @@ namespace WARDY.Managers
 
 
 
+        private void Start()
+        {
+            _playerChange = 3;
+        }
 
+        private void Update()
+        {
+            if (_playerChange <= 0)
+            {
+
+                EventManager.OnGameOver();
+
+            }
+        }
         private void OnEnable()
         {
             EventManager.ReducePlayerChange += ReducePlayerChange;
@@ -49,23 +63,10 @@ namespace WARDY.Managers
             if (!_player.IsImmune)
             {
 
-                if (obj.GetComponent<CellFloorWall>() != null)
+                if (obj.GetComponent<IBullet>() != null)
                 {
 
-                    _playerChange -= 1;
-
-                    _player.SetPlayerPositionAfterReduceChange();
-
-                    Time.timeScale = 0;
-
-                    StartCoroutine("SetTimeScale");
-
-                }
-
-                else if (obj.GetComponent<IBullet>() != null)
-                {
-
-                    _damage = obj.GetComponent<BasicBullet>().Damage;
+                    _damage = obj.GetComponent<BulletController>().Damage;
 
                     _player.Damage(_damage);
 
@@ -87,24 +88,30 @@ namespace WARDY.Managers
                 else
                 {
 
-                    _playerChange -= 1;
-
                     _player.Health = _player.TotalHealth;
 
-                    Debug.Log(_playerChange);
+                    _playerChange -= 1;
+
+                    _player.SetPlayerPositionAfterReduceChange();
+
+                    Time.timeScale = 0;
+
+                    StartCoroutine("SetTimeScale");
 
                 }
 
             }
+
 
         }
 
         private void ReducePlayerChange()
         {
 
+            Debug.Log(" add enemy hit wall gameobject !!! ");
+
             _playerChange -= 1;
 
-            Debug.Log(_playerChange);
 
         }
 
