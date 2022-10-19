@@ -5,7 +5,8 @@ using WARDY.Movements;
 using WARDY.Controllers;
 using WARDY.Abstracts.Interfaces;
 using WARDY.Managers;
-
+using UnityEngine.UI;
+using TMPro;
 
 namespace WARDY.Abstracts.Controllers
 {
@@ -17,6 +18,16 @@ namespace WARDY.Abstracts.Controllers
 
         [SerializeField] protected GameObject _playerController;
 
+        [SerializeField] protected float fireRate;
+
+        [SerializeField] Transform bulletTransform;
+
+        [SerializeField] RawImage _healthBarImage;
+
+        [SerializeField] GameObject _healthPanel;
+
+        [SerializeField] private TMP_Text _enemyHealthUI;
+
         #endregion
 
 
@@ -27,6 +38,8 @@ namespace WARDY.Abstracts.Controllers
         IPlayerDamageable _playerDamageable;
 
         EnemyHealth _enemyHealth;
+
+        EnemyFire _enemyFire;
 
         #endregion
 
@@ -41,6 +54,8 @@ namespace WARDY.Abstracts.Controllers
 
         protected float _health;
 
+        protected EnemyHealthUIManager _enemyHealthUIManager;
+
         #endregion
 
 
@@ -50,6 +65,15 @@ namespace WARDY.Abstracts.Controllers
 
         public bool FirstMoveCompleted { get => _firstMoveCompleted; set => _firstMoveCompleted = value; }
         public float Health { get => _health; set => _health = value; }
+        public float FireRate { get => fireRate; set => fireRate = value; }
+
+        public Transform BulletTransform => bulletTransform;
+
+        public RawImage HealthBarImage { get => _healthBarImage; set => _healthBarImage = value; }
+
+        public GameObject HealthPanel { get => _healthPanel; set => _healthPanel = value; }
+
+        public TMP_Text EnemyHealthUI { get => _enemyHealthUI; }
 
         #endregion
 
@@ -60,6 +84,10 @@ namespace WARDY.Abstracts.Controllers
             _bossFirstMovement = new BossFirstMovement(this, _playerController);
 
             _enemyHealth = new EnemyHealth(this.gameObject);
+
+            _enemyFire = new EnemyFire(this.gameObject);
+
+            _enemyHealthUIManager = new EnemyHealthUIManager(this.gameObject);
 
         }
 

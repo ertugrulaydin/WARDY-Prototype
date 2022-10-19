@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7274767343149177299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2168020536627268922}
+  m_Layer: 0
+  m_Name: BulletSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2168020536627268922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274767343149177299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7437757358232598840}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7437757358232598847
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,15 +41,13 @@ GameObject:
   - component: {fileID: 7437757358232598840}
   - component: {fileID: 7437757358232598820}
   - component: {fileID: 7437757358232598843}
-  - component: {fileID: 7437757358232598842}
-  - component: {fileID: 7437757358232598841}
   m_Layer: 0
   m_Name: BossKev
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7437757358232598840
 Transform:
   m_ObjectHideFlags: 0
@@ -29,8 +57,10 @@ Transform:
   m_GameObject: {fileID: 7437757358232598847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 180, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 5, z: 5}
-  m_Children: []
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2168020536627268922}
+  - {fileID: 5768143608414638232}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,29 +113,65 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7437757358232598842
-MonoBehaviour:
+--- !u!1001 &701708337012822289
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7437757358232598847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c0358a4b1083374aaa06dc799ff9874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerController: {fileID: 0}
---- !u!65 &7437757358232598841
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7437757358232598847}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Modification:
+    m_TransformParent: {fileID: 7437757358232598840}
+    m_Modifications:
+    - target: {fileID: 6462779878028263816, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_Name
+      value: EnemyBasicBulletPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: faabdab13868f034c9f730db51c87403, type: 3}
+--- !u!4 &5768143608414638232 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6462779878028263817, guid: faabdab13868f034c9f730db51c87403, type: 3}
+  m_PrefabInstance: {fileID: 701708337012822289}
+  m_PrefabAsset: {fileID: 0}

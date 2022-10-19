@@ -57,6 +57,8 @@ namespace WARDY.Abstracts.Controllers
 
         [SerializeField] GameObject _healthPanel;
 
+        [SerializeField] private TMP_Text _enemyHealthUI;
+
 
 
 
@@ -66,7 +68,7 @@ namespace WARDY.Abstracts.Controllers
 
         public Rigidbody GetRigidbody => _rigidbody;
 
-        [SerializeField] private TMP_Text _enemyHealthUI;
+
 
         public float FireRate { get => fireRate; protected set => fireRate = value; }
         public float HorizontalSpeed { get => _horizontalSpeed; protected set => _horizontalSpeed = value; }
@@ -93,7 +95,7 @@ namespace WARDY.Abstracts.Controllers
             _rigidbody = GetComponent<Rigidbody>();
 
             _enemyMovement = new EnemyMovement(this);
-            _enemyFire = new EnemyFire(this);
+            _enemyFire = new EnemyFire(this.gameObject);
             _enemyHealth = new EnemyHealth(this.gameObject);
             //_particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
