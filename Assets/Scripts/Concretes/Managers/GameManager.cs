@@ -44,7 +44,7 @@ namespace WARDY.Managers
                 Destroy(this.gameObject);
             }
 
-            Debug.Log("try againden sonra timescale çalışmıyor");
+            //Debug.Log("try againden sonra timescale çalışmıyor");
 
         }
 

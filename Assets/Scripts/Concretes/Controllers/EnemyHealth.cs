@@ -19,13 +19,13 @@ namespace WARDY.Controllers
                 }
          */
 
-        public EnemyHealth(GameObject enemy)
+        public EnemyHealth(EnemyController enemyController)
         {
-            _enemyController = enemy.GetComponent<EnemyController>();
+            _enemyController = enemyController.GetComponent<EnemyController>();
 
             if (_enemyController == null)
             {
-                _bossController = enemy.GetComponent<BossController>();
+                _bossController = enemyController.GetComponent<BossController>();
             }
         }
 

@@ -42,6 +42,8 @@ namespace WARDY.Abstracts.Controllers
 
 
 
+
+
         [SerializeField] Transform bulletTransform;
 
         protected Rigidbody _rigidbody;
@@ -50,6 +52,8 @@ namespace WARDY.Abstracts.Controllers
 
         [SerializeField] protected float fireRate;
         protected float _health;
+
+        protected bool _isBoss = false;
 
         [SerializeField] protected float _scoreMultiplier;
 
@@ -85,6 +89,8 @@ namespace WARDY.Abstracts.Controllers
 
         public GameObject HealthPanel { get => _healthPanel; set => _healthPanel = value; }
 
+        public bool IsBoos => _isBoss;
+
 
 
 
@@ -95,8 +101,8 @@ namespace WARDY.Abstracts.Controllers
             _rigidbody = GetComponent<Rigidbody>();
 
             _enemyMovement = new EnemyMovement(this);
-            _enemyFire = new EnemyFire(this.gameObject);
-            _enemyHealth = new EnemyHealth(this.gameObject);
+            _enemyFire = new EnemyFire(this);
+            _enemyHealth = new EnemyHealth(this);
             //_particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
 
@@ -130,9 +136,6 @@ namespace WARDY.Abstracts.Controllers
             }
 
         }
-
-
-
 
         protected void EnemyMove()
         {
@@ -176,20 +179,19 @@ namespace WARDY.Abstracts.Controllers
 
                 EventManager.PlayerTouchSomething(this.gameObject);
 
-                this.gameObject.SetActive(false);
+                if (!_isBoss)
+                {
+
+                    this.gameObject.SetActive(false);
+
+                }
+
 
             }
         }
 
         public abstract void SetDefaultVariables();
 
-        //movement
-
-        //fire
-
-        //health?
-
-        //damage?
 
     }
 }

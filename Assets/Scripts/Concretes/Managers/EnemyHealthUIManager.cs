@@ -26,6 +26,16 @@ namespace WARDY.Managers
 
         float _coroutineTime = 0.25f;
 
+        Vector3 _panelScaleVector;
+
+        Vector3 _panelDefaultScaleVector;
+
+        Vector3 _objectScaleVector;
+
+        Vector3 _objectDefaultScaleVector;
+
+
+
 
 
 
@@ -46,6 +56,32 @@ namespace WARDY.Managers
 
             _enemyController.HealthBarImage.rectTransform.localScale = new Vector3(1, 1, 1);
 
+            if (_enemyController.IsBoos)
+            {
+
+                _panelScaleVector = new Vector3(1f, 0.5f, 1f);
+
+                _panelDefaultScaleVector = new Vector3(0.5f, 0.25f, 1f);
+
+                _objectScaleVector = new Vector3(1, 1, 1);
+
+                _objectDefaultScaleVector = new Vector3(1, 1, 1);
+
+            }
+
+            else
+            {
+
+                _panelScaleVector = new Vector3(2.5f, 2.5f, 1f);
+
+                _panelDefaultScaleVector = new Vector3(1f, 1f, 1f);
+
+                _objectScaleVector = new Vector3(1.25f, 1.25f, 1.25f);
+
+                _objectDefaultScaleVector = new Vector3(1, 1, 1);
+
+            }
+
             EventManager.EnemyGetHit += SetEnemyHealthUI;
 
             methodToCall = SetHealthUICanvasSize;
@@ -64,9 +100,11 @@ namespace WARDY.Managers
 
             _enemyController.HealthBarImage.rectTransform.localScale = new Vector3((1 / _maxHealth) * _enemyHealth, 1, 1);
 
-            _enemyController.HealthPanel.transform.localScale = new Vector3(2.5f, 2.5f, 1);
+            _enemyController.HealthPanel.transform.localScale = _panelScaleVector;
 
-            _enemyController.gameObject.transform.GetChild(1).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            //Debug.Log(_panelScaleVector);
+
+            _enemyController.gameObject.transform.GetChild(1).transform.localScale = _objectScaleVector;
 
             GameManager.Instance.CoroutineTime = _coroutineTime;
 
@@ -77,9 +115,11 @@ namespace WARDY.Managers
         void SetHealthUICanvasSize()
         {
 
-            _enemyController.HealthPanel.transform.localScale = new Vector3(1f, 1f, 1);
+            _enemyController.HealthPanel.transform.localScale = _panelDefaultScaleVector;
 
-            _enemyController.gameObject.transform.GetChild(1).transform.localScale = new Vector3(1f, 1f, 1f);
+            //Debug.Log("def: " + _panelDefaultScaleVector);
+
+            _enemyController.gameObject.transform.GetChild(1).transform.localScale = _objectDefaultScaleVector;
 
         }
 

@@ -40,7 +40,7 @@ namespace WARDY.Controllers.EnemyControllers
 
         #endregion
 
-        private void Start()
+        public override void SetDefaultVariables()
         {
 
             _bossKevVerticalMovement = new BossKevVerticalMovement(this);
