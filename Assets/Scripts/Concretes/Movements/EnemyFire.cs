@@ -23,37 +23,14 @@ namespace WARDY.Movements
 
 
 
-        //public EnemyFire(GameObject enemy)
         public EnemyFire(EnemyController enemyController)
         {
-
-            //if (enemy.GetComponent<EnemyController>() != null)
-            //{
 
             _enemyController = enemyController.GetComponent<EnemyController>();
 
             fireRate = _enemyController.FireRate;
 
             _bulletTransform = _enemyController.BulletTransform;
-
-            //}
-            /*
-            else if (enemy.GetComponent<BossController>() != null)
-            {
-
-                _bossController = enemy.GetComponent<BossController>();
-
-                fireRate = _bossController.FireRate;
-
-                _bulletTransform = _bossController.BulletTransform;
-
-            }
-
-            */
-
-
-
-
 
             parentObject = enemyController.transform.gameObject;
 
@@ -70,6 +47,7 @@ namespace WARDY.Movements
         {
 
             GameObject bullet = _enemyBasicBulletPool.GetPooledObject(fireRate);
+
 
             if (bullet != null)
             {

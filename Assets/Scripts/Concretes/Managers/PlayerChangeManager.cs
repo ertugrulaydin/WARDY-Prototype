@@ -5,8 +5,7 @@ using WARDY.Controllers;
 using WARDY.Walls;
 using WARDY.Abstracts.Interfaces;
 using WARDY.Abstracts.Controllers;
-
-
+using UnityEngine.UI;
 
 namespace WARDY.Managers
 {
@@ -17,12 +16,18 @@ namespace WARDY.Managers
 
         [SerializeField] PlayerController _player;
 
+        [SerializeField] UIManager _uiManager;
+
         #endregion
 
 
         #region Private
 
         int _playerChange = 3;
+
+        List<RawImage> _playerChangeImages;
+
+        RawImage _playerChangeImage;
 
         float _damage;
 
@@ -39,6 +44,7 @@ namespace WARDY.Managers
         private void Start()
         {
             _playerChange = 3;
+
         }
 
         private void Update()
@@ -72,8 +78,9 @@ namespace WARDY.Managers
 
                     if (_player.Health <= 0)
                     {
+                        SetActiveFalsePlayerChangeImage(_playerChange);
 
-                        _playerChange -= 1;
+
 
                         _player.SetPlayerPositionAfterReduceChange();
 
@@ -90,7 +97,7 @@ namespace WARDY.Managers
 
                     _player.Health = _player.TotalHealth;
 
-                    _playerChange -= 1;
+                    SetActiveFalsePlayerChangeImage(_playerChange);
 
                     _player.SetPlayerPositionAfterReduceChange();
 
@@ -110,8 +117,7 @@ namespace WARDY.Managers
 
             Debug.Log(" add enemy hit wall gameobject !!! ");
 
-            _playerChange -= 1;
-
+            SetActiveFalsePlayerChangeImage(_playerChange);
 
         }
 
@@ -127,6 +133,15 @@ namespace WARDY.Managers
             Time.timeScale = 1;
 
             _player.Health = _player.TotalHealth;
+
+        }
+
+        private void SetActiveFalsePlayerChangeImage(int playerChange)
+        {
+
+            _playerChange -= 1;
+
+            _uiManager.PlayerChangeImages(_playerChange);
 
         }
 

@@ -23,7 +23,7 @@ namespace WARDY.Controllers.EnemyControllers
 
         float _actionTime;
 
-        float _kevBossHealth = 50000f;
+        float _kevBossHealth = 10000f;
 
 
 

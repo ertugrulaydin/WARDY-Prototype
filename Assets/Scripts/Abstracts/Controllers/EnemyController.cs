@@ -26,6 +26,9 @@ namespace WARDY.Abstracts.Controllers
 
         EnemyController _enemyController;
 
+        Animator _enemyAnimator;
+
+
 
 
 
@@ -91,14 +94,14 @@ namespace WARDY.Abstracts.Controllers
 
         public bool IsBoos => _isBoss;
 
-
-
-
+        public Animator EnemyAnimator { get => _enemyAnimator; set => _enemyAnimator = value; }
 
         protected void SubClassCreated()
         {
 
             _rigidbody = GetComponent<Rigidbody>();
+
+            EnemyAnimator = GetComponent<Animator>();
 
             _enemyMovement = new EnemyMovement(this);
             _enemyFire = new EnemyFire(this);
@@ -122,7 +125,7 @@ namespace WARDY.Abstracts.Controllers
             if (_isSubClassCreated)
             {
 
-                EnemyFire();
+                //EnemyFire();
 
                 EnemyMove();
 
@@ -137,6 +140,12 @@ namespace WARDY.Abstracts.Controllers
 
         }
 
+        private void Update()
+        {
+            //StartCoroutine("EnemyFire");
+            EnemyFire();
+        }
+
         protected void EnemyMove()
         {
 
@@ -147,9 +156,14 @@ namespace WARDY.Abstracts.Controllers
 
 
         protected void EnemyFire()
+        //protected IEnumerator EnemyFire()
         {
 
+            //yield return new WaitForSeconds(0.1f);
+
             _enemyFire.FixedTick();
+
+            //_enemyAnimator.Play("Kevs-Fire", 1);
 
         }
 

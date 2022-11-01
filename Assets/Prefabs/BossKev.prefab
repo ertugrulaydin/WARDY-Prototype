@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7585797376373912180
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2943007259114441043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7585797376373912180}
@@ -299,6 +299,14 @@ PrefabInstance:
     - target: {fileID: 2988028813498081211, guid: a0e7aa30af737eb428ae9c5caaba7cf4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988028813772827683, guid: a0e7aa30af737eb428ae9c5caaba7cf4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 671ce5638209c7340b6af28ac7058121, type: 2}
+    - target: {fileID: 2988028813772827683, guid: a0e7aa30af737eb428ae9c5caaba7cf4, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0e7aa30af737eb428ae9c5caaba7cf4, type: 3}

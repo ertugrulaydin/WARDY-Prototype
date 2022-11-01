@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c77b42cf6d4550749810a4ce7ed96d7b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - r2grul Digital Numbers
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ded1c9b2b044b714fa2c1463ccaefe87, type: 3}
+  - {fileID: 12800000, guid: 08126123415c87f48b674786cf0ff640, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

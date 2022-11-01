@@ -20,6 +20,8 @@ namespace WARDY.ObjectPools
         //[SerializeField] GameObject parentEnemyBasicBullets;
         GameObject returnedGameObject;
 
+
+
         float _fireRate;
 
 
@@ -50,6 +52,7 @@ namespace WARDY.ObjectPools
 
         public GameObject GetPooledObject(float fireRate)
         {
+
             _fireRate = fireRate;
 
             for (int i = 0; i < basicBullets.Count; i++)
@@ -57,8 +60,8 @@ namespace WARDY.ObjectPools
                 if (!basicBullets[i].activeInHierarchy)
                 {
 
-
                     StartCoroutine("ReturnBulletWithCoroutine", basicBullets[i]);
+
                     return returnedGameObject;
 
                     //return basicBullets[i];
@@ -68,18 +71,12 @@ namespace WARDY.ObjectPools
 
             return null;
         }
-        /* 
-                IEnumerator InstantiateBullets()
-                {
-
-                    yield return new WaitForSeconds(_fireRate);
-
-                } */
 
         IEnumerator ReturnBulletWithCoroutine(GameObject bullet)
         {
 
-            yield return new WaitForSeconds(_fireRate);
+            yield return new WaitForSecondsRealtime(_fireRate);
+
             returnedGameObject = bullet;
         }
 

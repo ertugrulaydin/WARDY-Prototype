@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using WARDY.Abstracts.Controllers;
+using UnityEngine.UI;
+using System;
 
 namespace WARDY.Managers
 {
@@ -12,13 +14,20 @@ namespace WARDY.Managers
 
         [SerializeField] private GameObject _gameOverObject;
 
+        [SerializeField] private List<RawImage> _playerChangesImages;
+
         private int _score = 0;
+
+
 
 
         private void Start()
         {
+
             EventManager.EnemyGetHit += GameScore;
+
             EventManager.GameOver += IsGameOver;
+
         }
 
 
@@ -41,6 +50,7 @@ namespace WARDY.Managers
         public void OnClickTryAgain()
         {
             Time.timeScale = 1;
+
             GameManager.Instance.LoadLevel();
 
         }
@@ -48,6 +58,13 @@ namespace WARDY.Managers
         public void OnClickMainMenu()
         {
             GameManager.Instance.LoadLevel(0);
+        }
+
+        public void PlayerChangeImages(int index)
+        {
+
+            _playerChangesImages[index].enabled = false;
+
         }
 
 
