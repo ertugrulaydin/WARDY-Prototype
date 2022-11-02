@@ -46,7 +46,7 @@ namespace WARDY.Movements
         public void FixedTick()
         {
 
-            GameObject bullet = _enemyBasicBulletPool.GetPooledObject(fireRate);
+            GameObject bullet = _enemyBasicBulletPool.GetPooledObject();
 
 
             if (bullet != null)

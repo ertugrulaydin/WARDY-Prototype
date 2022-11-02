@@ -18,16 +18,6 @@ namespace WARDY.Abstracts.Controllers
 
         [SerializeField] protected GameObject _playerController;
 
-        //[SerializeField] protected float fireRate;
-
-        //[SerializeField] Transform bulletTransform;
-
-        //[SerializeField] RawImage _healthBarImage;
-
-        //[SerializeField] GameObject _healthPanel;
-
-        //[SerializeField] private TMP_Text _enemyHealthUI;
-
         #endregion
 
 
@@ -37,9 +27,6 @@ namespace WARDY.Abstracts.Controllers
 
         IPlayerDamageable _playerDamageable;
 
-        //EnemyHealth _enemyHealth;
-
-        //EnemyFire _enemyFire;
 
         #endregion
 
@@ -52,9 +39,6 @@ namespace WARDY.Abstracts.Controllers
 
         protected bool _firstMoveCompleted = false;
 
-        //protected float _health;
-
-        //protected EnemyHealthUIManager _enemyHealthUIManager;
 
         #endregion
 
@@ -64,16 +48,7 @@ namespace WARDY.Abstracts.Controllers
         public float FirstMoveSpeed => _firstMoveSpeed;
 
         public bool FirstMoveCompleted { get => _firstMoveCompleted; set => _firstMoveCompleted = value; }
-        //public float Health { get => _health; set => _health = value; }
-        //public float FireRate { get => fireRate; set => fireRate = value; }
 
-        //public Transform BulletTransform => bulletTransform;
-
-        //public RawImage HealthBarImage { get => _healthBarImage; set => _healthBarImage = value; }
-
-        //public GameObject HealthPanel { get => _healthPanel; set => _healthPanel = value; }
-
-        //public TMP_Text EnemyHealthUI { get => _enemyHealthUI; }
 
         #endregion
 
@@ -86,25 +61,8 @@ namespace WARDY.Abstracts.Controllers
             _bossFirstMovement = new BossFirstMovement(this, _playerController);
 
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
-            //Debug.Log("isboss: " + _isBoss);
+
         }
-
-        /*
-                protected void SubClassCreated()
-                {
-
-
-
-                    //_enemyHealth = new EnemyHealth(this.gameObject);
-
-                    //_enemyFire = new EnemyFire(this.gameObject);
-
-
-
-                }
-                */
-
-
 
         private void FixedUpdate()
         {
@@ -124,52 +82,13 @@ namespace WARDY.Abstracts.Controllers
 
             }
 
-            EnemyFire();
-
         }
-        /*
-        private void OnTriggerEnter(Collider other)
-        {
-            _playerDamageable = other.gameObject.GetComponent<IPlayerDamageable>();
-
-            if (_playerDamageable != null)
-            {
-
-                EventManager.PlayerTouchSomething(this.gameObject);
-
-                this.gameObject.SetActive(false);
-
-            }
-        }
-
-        */
 
         public abstract void UpdatePositionAfterFirstMovement(Vector3 updatedPosition);
 
 
         public abstract void BossAction();
 
-
-        /*
-                public void Damage(float damage)
-                {
-                    _health = _enemyHealth.IncreaseHealth(damage);
-
-                    Debug.Log(_health);
-
-                    EventManager.OnEnemyGetHit(this);
-
-                    if (_health <= 0)
-                    {
-
-                        //EventManager.OnEnemyDestroyed(gameObject);
-
-                        this.gameObject.SetActive(false);
-
-                    }
-                }
-
-                */
     }
 }
 

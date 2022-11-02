@@ -26,7 +26,9 @@ namespace WARDY.Abstracts.Controllers
 
         EnemyController _enemyController;
 
-        Animator _enemyAnimator;
+        protected Animator _enemyAnimator;
+
+        float _basicFireTimer = 0;
 
 
 
@@ -104,8 +106,11 @@ namespace WARDY.Abstracts.Controllers
             EnemyAnimator = GetComponent<Animator>();
 
             _enemyMovement = new EnemyMovement(this);
+
             _enemyFire = new EnemyFire(this);
+
             _enemyHealth = new EnemyHealth(this);
+
             //_particleManager = new ParticleManager();
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
 
@@ -125,8 +130,6 @@ namespace WARDY.Abstracts.Controllers
             if (_isSubClassCreated)
             {
 
-                //EnemyFire();
-
                 EnemyMove();
 
                 if (_verticalMovement)
@@ -142,8 +145,18 @@ namespace WARDY.Abstracts.Controllers
 
         private void Update()
         {
-            //StartCoroutine("EnemyFire");
-            EnemyFire();
+
+            _basicFireTimer += Time.deltaTime;
+
+            if (_basicFireTimer >= fireRate)
+            {
+
+                EnemyFire();
+
+                _basicFireTimer = 0;
+
+            }
+
         }
 
         protected void EnemyMove()
@@ -156,14 +169,14 @@ namespace WARDY.Abstracts.Controllers
 
 
         protected void EnemyFire()
-        //protected IEnumerator EnemyFire()
-        {
 
-            //yield return new WaitForSeconds(0.1f);
+        {
 
             _enemyFire.FixedTick();
 
-            //_enemyAnimator.Play("Kevs-Fire", 1);
+            _enemyAnimator?.Play("Kevs_Fire", 1);
+
+
 
         }
 

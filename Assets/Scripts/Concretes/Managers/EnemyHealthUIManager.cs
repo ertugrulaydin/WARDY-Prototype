@@ -24,7 +24,7 @@ namespace WARDY.Managers
 
         RawImage _healtBarImage;
 
-        float _coroutineTime = 0.25f;
+        float _timer = 0.25f;
 
         Vector3 _panelScaleVector;
 
@@ -59,9 +59,9 @@ namespace WARDY.Managers
             if (_enemyController.IsBoos)
             {
 
-                _panelScaleVector = new Vector3(1f, 0.5f, 1f);
+                _panelScaleVector = new Vector3(1f, 1f, 1f);
 
-                _panelDefaultScaleVector = new Vector3(0.5f, 0.25f, 1f);
+                _panelDefaultScaleVector = new Vector3(0.75f, 0.75f, 1f);
 
                 _objectScaleVector = new Vector3(1, 1, 1);
 
@@ -102,13 +102,13 @@ namespace WARDY.Managers
 
             _enemyController.HealthPanel.transform.localScale = _panelScaleVector;
 
-            //Debug.Log(_panelScaleVector);
-
             _enemyController.gameObject.transform.GetChild(1).transform.localScale = _objectScaleVector;
 
-            GameManager.Instance.CoroutineTime = _coroutineTime;
+            //GameManager.Instance.CoroutineTime = _coroutineTime;
 
-            GameManager.Instance.StartCoroutine("NonMonoBehaviourCoroutine", methodToCall);
+            //GameManager.Instance.StartCoroutine("NonMonoBehaviourCoroutine", methodToCall);
+
+            GameManager.Instance.StartTimer(_timer, methodToCall);
 
         }
 
@@ -116,8 +116,6 @@ namespace WARDY.Managers
         {
 
             _enemyController.HealthPanel.transform.localScale = _panelDefaultScaleVector;
-
-            //Debug.Log("def: " + _panelDefaultScaleVector);
 
             _enemyController.gameObject.transform.GetChild(1).transform.localScale = _objectDefaultScaleVector;
 

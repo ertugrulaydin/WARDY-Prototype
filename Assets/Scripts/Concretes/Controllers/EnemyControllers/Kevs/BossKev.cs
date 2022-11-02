@@ -51,7 +51,11 @@ namespace WARDY.Controllers.EnemyControllers
 
             Health = _kevBossHealth;
 
+            fireRate = 1f;
+
             SubClassCreated();
+
+            _enemyAnimator.speed = 5;
 
         }
 

@@ -21,13 +21,18 @@ namespace WARDY.Managers
         #endregion
 
         #region Private
-        float _coroutineTime;
+
+        CoroutineDelegate _methodToCall;
+        float _timer;
+
+        float _count;
+
+        bool _startTimer;
+
+        bool _timerComplete;
 
         #endregion
 
-        #region Properties
-        public float CoroutineTime { get => _coroutineTime; set => _coroutineTime = value; }
-        #endregion
 
 
         private void Awake()
@@ -45,6 +50,21 @@ namespace WARDY.Managers
             }
 
             //Debug.Log("try againden sonra timescale çalışmıyor");
+
+        }
+        private void Start()
+        {
+
+            _count = 0;
+
+            _startTimer = false;
+
+        }
+
+        private void Update()
+        {
+
+            GameTimer();
 
         }
 
@@ -75,12 +95,48 @@ namespace WARDY.Managers
         }
 
 
-        IEnumerator NonMonoBehaviourCoroutine(CoroutineDelegate methodToCall)
+        public void StartTimer(float timer, CoroutineDelegate methodToCall)
         {
 
-            yield return new WaitForSecondsRealtime(_coroutineTime);
+            _methodToCall = methodToCall;
 
-            methodToCall();
+            _timer = timer;
+
+            _count = 0;
+
+            _startTimer = true;
+
+            _timerComplete = false;
+
+        }
+
+        private void GameTimer()
+        {
+
+            if (_startTimer)
+            {
+
+                _count += Time.deltaTime;
+
+                if (_count >= _timer)
+                {
+
+                    _startTimer = false;
+
+                    _timerComplete = true;
+
+                    _count = 0;
+
+                }
+
+            }
+
+            if (_timerComplete)
+            {
+
+                _methodToCall();
+
+            }
         }
     }
 }

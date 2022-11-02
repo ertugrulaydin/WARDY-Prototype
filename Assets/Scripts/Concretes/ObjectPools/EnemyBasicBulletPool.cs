@@ -22,9 +22,6 @@ namespace WARDY.ObjectPools
 
 
 
-        float _fireRate;
-
-
         /* 
                 private void Awake()
                 {
@@ -50,21 +47,15 @@ namespace WARDY.ObjectPools
 
         }
 
-        public GameObject GetPooledObject(float fireRate)
+        public GameObject GetPooledObject()
         {
-
-            _fireRate = fireRate;
 
             for (int i = 0; i < basicBullets.Count; i++)
             {
                 if (!basicBullets[i].activeInHierarchy)
                 {
 
-                    StartCoroutine("ReturnBulletWithCoroutine", basicBullets[i]);
-
-                    return returnedGameObject;
-
-                    //return basicBullets[i];
+                    return basicBullets[i];
 
                 }
             }
@@ -72,13 +63,13 @@ namespace WARDY.ObjectPools
             return null;
         }
 
-        IEnumerator ReturnBulletWithCoroutine(GameObject bullet)
-        {
+        /*         IEnumerator ReturnBulletWithCoroutine(GameObject bullet)
+                {
 
-            yield return new WaitForSecondsRealtime(_fireRate);
+                    yield return new WaitForSecondsRealtime(_fireRate);
 
-            returnedGameObject = bullet;
-        }
+                    returnedGameObject = bullet;
+                } */
 
 
     }

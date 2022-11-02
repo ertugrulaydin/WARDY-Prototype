@@ -23,6 +23,8 @@ namespace WARDY.Controllers.EnemyControllers.Kevs
 
             SubClassCreated();
 
+            _enemyAnimator.speed = 10;
+
         }
 
     }
