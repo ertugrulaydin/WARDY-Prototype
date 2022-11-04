@@ -7,7 +7,7 @@ namespace WARDY.Abstracts.Interfaces
 {
     public interface IBullet
     {
-        abstract void GiveDamage(Collider other);
+        void GiveDamage(Collider other);
 
     }
 }

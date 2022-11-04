@@ -22,6 +22,15 @@ namespace WARDY.Controllers.EnemyControllers.Kevs
             _enemyAnimator.speed = 3;
 
         }
+
+        private void Update()
+        {
+
+            EnemyFireTimer();
+
+            EnemyFire();
+
+        }
     }
 }
 

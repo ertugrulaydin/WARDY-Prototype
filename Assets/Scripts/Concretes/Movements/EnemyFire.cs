@@ -28,7 +28,7 @@ namespace WARDY.Movements
 
             _enemyController = enemyController.GetComponent<EnemyController>();
 
-            fireRate = _enemyController.FireRate;
+            //fireRate = _enemyController.FireRate;
 
             _bulletTransform = _enemyController.BulletTransform;
 

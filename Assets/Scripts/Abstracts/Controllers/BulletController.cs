@@ -2,23 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WARDY.Abstracts.Interfaces;
+using WARDY.Managers;
 
 namespace WARDY.Abstracts.Controllers
 {
-    public abstract class BulletController : MonoBehaviour, IBullet
+    public abstract class BulletController : AmmoController
     {
         [SerializeField] float bulletSpeed = 15.5f;
 
         Rigidbody _rigidbody;
-
-        [SerializeField] int direction;
-
-        public int Direction => direction;
-
-        [SerializeField] protected float _damage;
-
-        public float Damage => _damage;
-
 
 
 
@@ -46,7 +38,7 @@ namespace WARDY.Abstracts.Controllers
 
         }
 
-        public abstract void GiveDamage(Collider other);
+
     }
 }
 

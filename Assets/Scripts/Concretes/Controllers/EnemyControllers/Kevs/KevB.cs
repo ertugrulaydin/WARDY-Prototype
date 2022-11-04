@@ -27,5 +27,14 @@ namespace WARDY.Controllers.EnemyControllers.Kevs
 
         }
 
+        private void Update()
+        {
+
+            EnemyFireTimer();
+
+            EnemyFire();
+
+        }
+
     }
 }

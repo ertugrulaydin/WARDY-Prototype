@@ -49,8 +49,10 @@ namespace WARDY.ObjectPools
                 if (!basicBullets[i].activeInHierarchy)
                 {
 
-                    StartCoroutine("ReturnBulletWithCoroutine", basicBullets[i]);
-                    return returnedGameObject;
+                    return basicBullets[i];
+
+                    //StartCoroutine("ReturnBulletWithCoroutine", basicBullets[i]);
+                    //return returnedGameObject;
                 }
             }
 

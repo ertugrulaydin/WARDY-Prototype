@@ -52,7 +52,9 @@ namespace WARDY.Controllers
 
 
         [SerializeField] Transform bulletTransform;
-
+        private bool _canFire = false;
+        private float _basicFireTimer = 0;
+        private float fireRate = 0.5f;
 
         public float HorizontalSpeed => _horizontalSpeed;
 
@@ -101,6 +103,10 @@ namespace WARDY.Controllers
 
             _inputValue = _input.isUpDown;
 
+            PlayerFireTimer();
+
+            PlayerFire();
+
             if (!_canMoveForward)
             {
 
@@ -130,7 +136,40 @@ namespace WARDY.Controllers
 
             _playerMovement.FixedTick(_inputValue);
 
-            _playerFire.Tick();
+            //_playerFire.Tick();
+
+        }
+
+        private void PlayerFireTimer()
+        {
+
+            _basicFireTimer += Time.deltaTime;
+
+            if (_basicFireTimer >= fireRate)
+            {
+
+                _canFire = true;
+
+                _basicFireTimer = 0;
+
+            }
+
+        }
+
+        private void PlayerFire()
+
+        {
+
+            if (_canFire)
+            {
+
+                _playerFire.Tick();
+
+                //animator;
+
+                _canFire = false;
+
+            }
 
         }
 

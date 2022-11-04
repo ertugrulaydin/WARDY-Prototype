@@ -72,7 +72,7 @@ namespace WARDY.Managers
                 if (obj.GetComponent<IBullet>() != null)
                 {
 
-                    _damage = obj.GetComponent<BulletController>().Damage;
+                    _damage = obj.GetComponent<AmmoController>().Damage;
 
                     _player.Damage(_damage);
 

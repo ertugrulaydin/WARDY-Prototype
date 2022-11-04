@@ -29,11 +29,8 @@ namespace WARDY.Movements
         public void Tick()
         {
 
-
-            //GameObject bullet = _basicBulletPool.GetPooledObject();
             GameObject bullet = BasicBulletPool._instance.GetPooledObject();
 
-            //Debug.Log(bullet);
             if (bullet != null && _playerController.IsFire)
             {
                 bullet.transform.position = _playerController.BulletTransform.position;

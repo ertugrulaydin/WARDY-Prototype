@@ -134,6 +134,8 @@ namespace WARDY.Managers
             if (_timerComplete)
             {
 
+                _timerComplete = false;
+
                 _methodToCall();
 
             }

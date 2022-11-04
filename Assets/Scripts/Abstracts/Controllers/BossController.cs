@@ -18,6 +18,10 @@ namespace WARDY.Abstracts.Controllers
 
         [SerializeField] protected GameObject _playerController;
 
+        [SerializeField] private GameObject _secondaryAmmo;
+
+        [SerializeField] private List<GameObject> _secondaryAmmos;
+
         #endregion
 
 
@@ -26,6 +30,10 @@ namespace WARDY.Abstracts.Controllers
         BossFirstMovement _bossFirstMovement;
 
         IPlayerDamageable _playerDamageable;
+
+        EnemyFireSecondary _enemyFireSecondary;
+
+
 
 
         #endregion
@@ -38,6 +46,8 @@ namespace WARDY.Abstracts.Controllers
         protected float _firstMoveSpeed = 0.015f;
 
         protected bool _firstMoveCompleted = false;
+
+        protected bool _boosCanSecondaryFire = false;
 
 
         #endregion
@@ -58,9 +68,32 @@ namespace WARDY.Abstracts.Controllers
 
             _isBoss = true;
 
+            hasSecondaryAmmo = true;
+
+
             _bossFirstMovement = new BossFirstMovement(this, _playerController);
 
             _enemyHealthUIManager = new EnemyHealthUIManager(this);
+
+            _enemyFireSecondary = new EnemyFireSecondary(this, _secondaryAmmo);
+
+        }
+
+        private void Update()
+        {
+
+            EnemyFireTimer();
+
+            EnemyFire();
+
+            if (_boosCanSecondaryFire && !StopSecondaryFire)
+            {
+
+                EnemySecondaryFireTimer();
+
+                EnemySecondaryFire(_enemyFireSecondary);
+
+            }
 
         }
 

@@ -53,6 +53,8 @@ namespace WARDY.Controllers.EnemyControllers
 
             fireRate = 1f;
 
+            _secondaryAmmoFireRate = 2f; //def: 8f
+
             SubClassCreated();
 
             _enemyAnimator.speed = 5;
@@ -68,6 +70,7 @@ namespace WARDY.Controllers.EnemyControllers
         {
             if (_verticalMove)
             {
+                _boosCanSecondaryFire = true;
 
                 _sendParameterCount = 0;
 
@@ -106,6 +109,7 @@ namespace WARDY.Controllers.EnemyControllers
             if (_horizontalMove)
             {
 
+                _boosCanSecondaryFire = false;
 
                 if (_sendParameterCount == 0)
                 {

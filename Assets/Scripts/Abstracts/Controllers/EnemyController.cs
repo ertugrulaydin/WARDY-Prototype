@@ -30,6 +30,22 @@ namespace WARDY.Abstracts.Controllers
 
         float _basicFireTimer = 0;
 
+        protected bool hasSecondaryAmmo = false;
+
+        float _secondaryAmmoTimer = 0;
+
+        protected float _secondaryAmmoFireRate;
+
+        bool _canFire = false;
+
+        bool _canSecondaryFire = false;
+
+        EnemyFireSecondary _enemyFireSecondary;
+
+        private bool stopSecondaryFire = false;
+
+        //int _countsomething = 0;
+
 
 
 
@@ -97,6 +113,7 @@ namespace WARDY.Abstracts.Controllers
         public bool IsBoos => _isBoss;
 
         public Animator EnemyAnimator { get => _enemyAnimator; set => _enemyAnimator = value; }
+        public bool StopSecondaryFire { get => stopSecondaryFire; set => stopSecondaryFire = value; }
 
         protected void SubClassCreated()
         {
@@ -143,7 +160,15 @@ namespace WARDY.Abstracts.Controllers
 
         }
 
-        private void Update()
+
+        protected void EnemyMove()
+        {
+
+            _enemyMovement.Move();
+
+        }
+
+        protected void EnemyFireTimer()
         {
 
             _basicFireTimer += Time.deltaTime;
@@ -151,18 +176,11 @@ namespace WARDY.Abstracts.Controllers
             if (_basicFireTimer >= fireRate)
             {
 
-                EnemyFire();
+                _canFire = true;
 
                 _basicFireTimer = 0;
 
             }
-
-        }
-
-        protected void EnemyMove()
-        {
-
-            _enemyMovement.Move();
 
         }
 
@@ -172,11 +190,47 @@ namespace WARDY.Abstracts.Controllers
 
         {
 
-            _enemyFire.FixedTick();
+            if (_canFire)
+            {
 
-            _enemyAnimator?.Play("Kevs_Fire", 1);
+                _enemyFire.FixedTick();
 
+                _enemyAnimator?.Play("Kevs_Fire", 1);
 
+                _canFire = false;
+
+            }
+
+        }
+
+        protected void EnemySecondaryFireTimer()
+        {
+
+            _secondaryAmmoTimer += Time.deltaTime;
+
+            if (_secondaryAmmoTimer >= _secondaryAmmoFireRate)
+            {
+                _canSecondaryFire = true;
+
+                _secondaryAmmoTimer = 0;
+
+            }
+
+        }
+
+        protected void EnemySecondaryFire(EnemyFireSecondary enemyFireSecondary)
+        {
+
+            _enemyFireSecondary = enemyFireSecondary;
+
+            if (_canSecondaryFire)
+            {
+
+                _enemyFireSecondary.FixedTick();
+
+                _canSecondaryFire = false;
+
+            }
 
         }
 
