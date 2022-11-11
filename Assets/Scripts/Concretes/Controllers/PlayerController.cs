@@ -54,7 +54,7 @@ namespace WARDY.Controllers
         [SerializeField] Transform bulletTransform;
         private bool _canFire = false;
         private float _basicFireTimer = 0;
-        private float fireRate = 0.5f;
+        private float fireRate = 0.25f;
 
         public float HorizontalSpeed => _horizontalSpeed;
 

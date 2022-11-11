@@ -15,26 +15,23 @@ namespace WARDY.Abstracts.Controllers
 
         [SerializeField] float bulletSpeed = 15f;
 
-        //[SerializeField] int direction;
-
         #endregion
 
         #region Private
-
-        Rigidbody _rigidbody;
 
         Vector3 _destinationPoint;
 
         Vector3 _startPoint;
 
-        float _lerpValue = 0;
+        float _moveAngle;
 
 
         #endregion
 
-        #region Public
+        #region Protected
 
-        public bool canFire = false;
+        protected Rigidbody _rigidbody;
+        protected bool canFire = false;
 
         #endregion
 
@@ -53,35 +50,50 @@ namespace WARDY.Abstracts.Controllers
         }
 
 
-        private void FixedUpdate()
+        protected void RocketMove()
         {
 
-            //only enemy can use rocket, for now.(direction == -1)
             if (canFire)
             {
 
-                transform.position = Vector3.Lerp(_startPoint, _destinationPoint, _lerpValue);
-
-                _lerpValue += 0.02f;
-
-                if (_lerpValue >= 1)
-                {
-
-                    transform.position = Vector2.left * bulletSpeed;
-
-                }
+                _rigidbody.AddRelativeForce(Vector3.back * bulletSpeed);
 
             }
 
+        }
+
+        public void PrepareToFire()
+        {
+
+            SetStartPoint();
+
+            SetDestination();
+
+            transform.parent = null;
+
+            canFire = true;
+
+            Quaternion rotation = Quaternion.Euler(_moveAngle, -90, 0);
+
+            transform.rotation = rotation;
 
         }
 
-        public void SetDestination()
+        private void SetStartPoint()
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.parent.transform.position.y, 0);
+
+        }
+
+        private void SetDestination()
         {
 
             _startPoint = transform.position;
 
             _destinationPoint = _player.transform.position;
+
+            _moveAngle = Mathf.Atan2(_player.transform.position.y - transform.parent.transform.position.y, _player.transform.position.x - transform.parent.transform.position.x) * Mathf.Rad2Deg;
 
         }
 

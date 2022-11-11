@@ -51,7 +51,7 @@ namespace WARDY.Controllers.EnemyControllers
 
             Health = _kevBossHealth;
 
-            fireRate = 1f;
+            fireRate = 0.6f;
 
             _secondaryAmmoFireRate = 2f; //def: 8f
 

@@ -29,13 +29,10 @@ namespace WARDY.Managers
 
         private Vector3 _enemySpawnPosition;
 
-        private int _enemyCount;
-
         private GameObject _enemyType;
 
         private GameObject kev;
 
-        private float _offset = 5f;
 
 
 
@@ -52,48 +49,66 @@ namespace WARDY.Managers
 
             }
 
+            StartCoroutine("EnemySpawn");
+
         }
 
-
-        void FixedUpdate()
-        {
-
-            SpawnerPosition();
-
-            if (_positionListIndex < _spawnPointsPosition.Count)
-            {
-
-                if ((int)transform.position.x == (int)_spawnPointsPosition[_positionListIndex].x)
+        /*
+                void Update()
                 {
 
-                    GetSpawnPointControllerValues();
+                    SpawnerPosition();
 
-                    _nextPosition = _spawnPointsPosition[_positionListIndex];
-
-                    _enemySpawnPosition = _nextPosition;
-
-                    SetActiveGameObject(_enemyType);
-
-                    _positionListIndex++;
+                    StartCoroutine("EnemySpawn");
 
                 }
 
+        */
+        IEnumerator EnemySpawn()
+        {
+
+
+            while (true)
+            {
+
+                SpawnerPosition();
+
+                if (_positionListIndex < _spawnPointsPosition.Count)
+                {
+
+                    if ((int)transform.position.x >= (int)_spawnPointsPosition[_positionListIndex].x)
+                    {
+
+                        GetSpawnPointControllerValues();
+
+                        _nextPosition = _spawnPointsPosition[_positionListIndex];
+
+                        _enemySpawnPosition = _nextPosition;
+
+                        SetActiveGameObject(_enemyType);
+
+                        _positionListIndex++;
+
+                    }
+
+                }
+
+                yield return new WaitForSeconds(2f);
             }
+
         }
 
         private void SpawnerPosition()
         {
 
             _spawnerPosition = new Vector3(_playerTransform.position.x + _distance, 0, 0);
+
             transform.position = _spawnerPosition;
 
         }
 
         private void SetActiveGameObject(GameObject enemyType)
         {
-
-            //for (int i = 0; i < _enemyCount; i++)
-            // {
 
             if (_enemyType.name == "KevA")
             {
@@ -108,23 +123,11 @@ namespace WARDY.Managers
 
             }
 
-
-
             kev.gameObject.SetActive(true);
 
             kev.transform.position = _enemySpawnPosition;
 
             kev.gameObject.GetComponent<EnemyController>().SetDefaultVariables();
-
-
-            _enemySpawnPosition.x += _offset;
-
-            // }
-
-
-
-
-
 
         }
 
@@ -133,9 +136,7 @@ namespace WARDY.Managers
 
             _spawnPointController = _spawnPoints.transform.GetChild(_positionListIndex).GetComponent<SpawnPointController>();
 
-
             _enemyType = _spawnPointController.EnemyType;
-
 
         }
     }

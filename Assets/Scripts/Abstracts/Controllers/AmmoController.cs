@@ -39,6 +39,7 @@ namespace WARDY.Abstracts.Controllers
             if (playerdamageable != null && direction == -1)
             {
                 EventManager.PlayerTouchSomething(this.gameObject);
+
                 this.gameObject.SetActive(false);
             }
 

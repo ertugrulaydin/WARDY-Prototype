@@ -18,6 +18,8 @@ namespace WARDY.Movements
 
         WingedRockets _wingedRockets;
 
+        RocketController _rocketController;
+
         int _rocketIndex = 0;
 
         bool _stopSecondaryFire;
@@ -48,9 +50,9 @@ namespace WARDY.Movements
 
                     GameObject rocket = _wingedRockets.GetWingedBasicRocket(_rocketIndex);
 
-                    rocket.gameObject.GetComponent<RocketController>().SetDestination();
+                    _rocketController = rocket.gameObject.GetComponent<RocketController>();
 
-                    rocket.gameObject.GetComponent<RocketController>().canFire = true;
+                    _rocketController.PrepareToFire();
 
                     _rocketIndex += 1;
 
