@@ -63,8 +63,11 @@ namespace WARDY.Managers
 
         private void Update()
         {
+            if (_startTimer){
 
-            GameTimer();
+                GameTimer();
+            
+            }
 
         }
 
@@ -113,8 +116,8 @@ namespace WARDY.Managers
         private void GameTimer()
         {
 
-            if (_startTimer)
-            {
+            //if (_startTimer)
+            //{
 
                 _count += Time.deltaTime;
 
@@ -129,7 +132,7 @@ namespace WARDY.Managers
 
                 }
 
-            }
+            //}
 
             if (_timerComplete)
             {
@@ -139,6 +142,14 @@ namespace WARDY.Managers
                 _methodToCall();
 
             }
+        }
+
+        public int GetCurrentLevelIndex(){
+            
+            int levelIndex = SceneManager.GetActiveScene().buildIndex;
+
+            return levelIndex;
+
         }
     }
 }
